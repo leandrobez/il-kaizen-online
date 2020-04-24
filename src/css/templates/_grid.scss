@@ -1,0 +1,38 @@
+.il-app {
+  min-height: 100vh;
+  background: $primaryColor;
+  .il-container {
+    width: 100%;
+    height: 100%;
+    max-width: 1360px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr 30px;
+    @media screen and (min-width: 680px) {
+      grid-template-rows: 61px 1fr 30px;
+    }
+    .il-container--wrapper {
+      width: 100%;
+      margin: auto;
+      @media screen and (min-width: 480px) {
+        width: 98%;
+      }
+      @media screen and (min-width: 680px) {
+        width: 96%;
+      }
+      @media screen and (min-width: 800px) {
+        width: 94%;
+      }
+      @media screen and (min-width: 1024px) {
+        width: 92%;
+      }
+      @media screen and (min-width: 1200px) {
+        width: 90%;
+      }
+      @media screen and (min-width: 1360px) {
+        width: 85%;
+      }
+    }
+  }
+}

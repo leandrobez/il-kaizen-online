@@ -1,0 +1,79 @@
+.il-modal--grid {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 0.5rem;
+  background: rgb(219, 104, 104);
+  h5 {
+    margin-bottom: 1.4rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 30px;
+      height: 2px;
+      padding: 1px 0;
+      width: 100%;
+      background: rgb(212, 128, 128);
+    }
+  }
+  .il-buttoms--details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 0.4rem;
+    .il-buttom--item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+    }
+  }
+  .il-detail--modal {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: $sliderHeightMobile + $headerHeightMobile;
+    @media (min-width: 680px) {
+      top: $sliderHeightDesktop + $headerHeightDesktop;
+    }
+    .il-modal--casts,
+    .il-modal--gallery,
+    .il-modal--streaming {
+      position: absolute;
+      width: 100%;
+      left: -150%;
+      &.il-modal--show {
+        left: 0;
+      }
+      .il-detail--casts,
+      .il-detail--gallery,
+      .il-detail--streaming {
+        width: 100%;
+        padding: 0.35rem 0;
+        margin-top: 0.5rem;
+        @include sectionDetail;
+        border-radius: 5px;
+        h5 {
+          margin-bottom: 1.4rem;
+          text-transform: uppercase;
+          font-size: 0.9rem;
+          position: relative;
+          &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 30px;
+            height: 2px;
+            padding: 1px 0;
+            width: 100%;
+            background: rgb(212, 128, 128);
+          }
+        }
+      }
+    }
+  }
+}

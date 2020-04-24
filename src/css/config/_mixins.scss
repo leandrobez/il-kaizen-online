@@ -1,0 +1,51 @@
+@mixin ease {
+  transition: 550ms all ease;
+}
+@mixin easeOut {
+  transition: all 650ms ease-out;
+}
+
+@mixin backAfter {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 5;
+  opacity: 0.8;
+}
+
+@mixin sectionDetail {
+  background-image: linear-gradient(
+    245deg,
+    $thirtyColor 3%,
+    $mediumColor 88%,
+    $lightColor 125%
+  );
+}
+
+@mixin bigImage {
+  position: relative;
+  width: $maxSliderwidth;
+  height: $bannerHeightMobile;
+  @media screen and (min-width: 680px) {
+    height: $bannerHeightDesktop;
+  }
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin sliderImage {
+  position: absolute;
+  width: 100%;
+  height: $sliderHeightMobile;
+  @media screen and (min-width: 680px) {
+    height: $sliderHeightDesktop;
+  }
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 4;
+}

@@ -1,0 +1,68 @@
+/**HEADER*/
+header.il-header {
+  width: 100%;
+  nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    @media (min-width: 680px) {
+      flex-direction: row;
+    }
+    .il-brand {
+      display: flex;
+      justify-content: flex-start;
+      justify-items: center;
+      margin: auto;
+      @media screen and (min-width: 680px) {
+        width: 100%;
+        justify-content: flex-start;
+        flex: 1;
+      }
+      img {
+        width: 38px;
+      }
+      h1.il-brand--title {
+        color: #a4a7b1;
+        font-size: 0.75rem;
+        line-height: 61px;
+        @media screen and (min-width: 480px) {
+          font-size: 0.75rem;
+        }
+        @media screen and (min-width: 680px) {
+          font-size: 0.78rem;
+        }
+        @media screen and (min-width: 800px) {
+          font-size: 0.8rem;
+
+          padding: 0 4px;
+        }
+        @media screen and (min-width: 1024px) {
+          font-size: 0.85rem;
+        }
+        @media screen and (min-width: 1200px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    ul.il-menu {
+      height: 61px;
+      padding: 0 0.4rem;
+      justify-content: space-between;
+      @media screen and (min-width: 680px) {
+        flex: 2 1;
+      }
+      li {
+        line-height: 61px;
+        a.il-link {
+          border-bottom: 2px solid #daceee;
+          font-size: 0.85rem;
+          &:hover {
+            color: $lightColor;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}

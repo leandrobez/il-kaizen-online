@@ -1,0 +1,67 @@
+.il-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+  grid-gap: 1.5rem;
+  justify-content: center;
+  align-content: center;
+  .il-plan--item {
+    padding: 0;
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    background: $lightColor;
+    position: relative;
+    height: $minHeightCardPlan;
+
+    .il-plan--header {
+      position: relative;
+      z-index: 2;
+      height: $heigthHeaderPoster;
+      background: $secondColor;
+      h4,
+      h6 {
+        text-align: center;
+      }
+    }
+    .il-plan--body {
+      position: relative;
+      padding: 0.5rem;
+      h6 {
+        padding: 0.4rem 0;
+        text-align: center;
+      }
+      span.il-price {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 0;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        text-align: center;
+        font-weight: 800;
+      }
+      p {
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+      ul.il-feature {
+        display: block;
+        margin-top: 0.4rem;
+        li {
+          padding: 0.1rem 0;
+          span {
+            font-size: 0.75rem;
+            display: block;
+            text-align: left;
+          }
+        }
+      }
+    }
+    .il-plan--footer {
+      padding: 0.4rem 0;
+      text-align: center;
+      button {
+        cursor: pointer;
+      }
+    }
+  }
+}

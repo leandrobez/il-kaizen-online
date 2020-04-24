@@ -1,0 +1,23 @@
+.il-gerencianet--form {
+  margin-top: 1rem;
+  h2 {
+    font-size: 1rem;
+  }
+  position: absolute;
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem 3rem;
+  background: $mediumColor;
+  border: 1px solid #431113;
+  top: $sliderHeightMobile + 150px;
+  box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.3);
+  @media (min-width: 680px) {
+    top: $sliderHeightDesktop + 150px;
+  }
+  left: -150%;
+  &.il-show {
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+}

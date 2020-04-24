@@ -1,0 +1,61 @@
+a.il-btn,
+button.il-btn {
+  display: inline-block;
+  width: 310px;
+  text-align: center;
+  height: 50px;
+  margin: 35px auto;
+  padding: 3px 4px;
+  &.il-btn--plan,
+  &.il-btn--video,
+  &.il-btn--card {
+    background: #983433;
+    color: white;
+    transition: all 450ms ease-in;
+    border: none;
+    border-radius: 50px;
+    line-height: 44px;
+    &:hover {
+      transform: scale(0.95);
+    }
+  }
+  &.il-btn--plan {
+    box-shadow: -2px 7px 15px rgba(110, 99, 99, 0.7);
+  }
+  &.il-btn--video {
+    background: transparent;
+    border: 2px solid white;
+    text-transform: uppercase;
+    &:hover {
+      transform: scale(0.95);
+    }
+  }
+  &.il-btn--card {
+    margin: auto;
+    padding: 0;
+    width: 120px;
+    height: 100%;
+    background: #85b448;
+    @include easeOut;
+    &:hover {
+      transform: scale(0.95);
+      background: #456120;
+      color: $linkLight;
+    }
+  }
+}
+
+.il-buttons {
+  display: flex;
+  justify-content: space-between;
+  height: 120px;
+  a {
+    width: 100%;
+    @media screen and (min-width: 680px) {
+      max-width: 43%;
+    }
+  }
+}
+.il-card--buttons {
+  text-align: center;
+}

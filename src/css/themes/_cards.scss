@@ -1,0 +1,48 @@
+.il-card--plans {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 110px));
+  grid-gap: 0.2rem 0.5rem;
+  @media (min-width: 500px) {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 150px));
+    grid-gap: 0.25rem 0.9rem;
+  }
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
+    grid-gap: 0.3rem 1.1rem;
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    grid-gap: 0.35rem 1.3rem;
+  }
+
+  justify-content: center;
+  align-content: center;
+  .il-card--item {
+    padding: 0;
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    background: #342458;
+    position: relative;
+    height: 220px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-items: center;
+    span {
+      display: block;
+      text-align: center;
+    }
+    .il-card--title {
+      color: yellow;
+      text-transform: uppercase;
+    }
+    .il-card--price {
+      font-size: 1.35rem;
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Abel|Rubik|Montserrat&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: $textColorDefault;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Abel', sans-serif;
+  font-size: $h1Size;
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  font-size: $h1Size * 0.9;
+}
+h3 {
+  font-size: $h1Size * 0.8;
+}
+h4 {
+  font-size: $h1Size * 0.7;
+}
+h5 {
+  font-size: $h1Size * 0.6;
+}
+h6 {
+  font-size: $h1Size * 0.5;
+}
+
+.il-right {
+  text-align: right;
+}
+
+.il-center {
+  text-align: center;
+}
+
+.il-big--title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  @media screen and(min-width:500px) {
+    font-size: 2rem;
+  }
+  @media screen and(min-width:768px) {
+    font-size: 2.5rem;
+  }
+  @media screen and(min-width:1024px) {
+    font-size: 3.5rem;
+  }
+  @media screen and(min-width:1360px) {
+    font-size: 4rem;
+  }
+}
+
+.il-subtitle {
+  font-size: 1rem;
+  @media screen and(min-width:500px) {
+    font-size: 1.3rem;
+  }
+  @media screen and(min-width:768px) {
+    font-size: 1.8rem;
+  }
+  @media screen and(min-width:1024px) {
+    font-size: 2.1rem;
+  }
+  @media screen and(min-width:1360px) {
+    font-size: 2.5rem;
+  }
+}
+
+p.il-description {
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.85rem;
+  @media screen and(min-width:500px) {
+    font-size: 0.87rem;
+  }
+  @media screen and(min-width:768px) {
+    font-size: 0.9rem;
+  }
+  @media screen and(min-width:1024px) {
+    font-size: 1rem;
+  }
+  @media screen and(min-width:1360px) {
+    font-size: 1.3rem;
+  }
+}
