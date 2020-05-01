@@ -6,6 +6,8 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Plans from './components/pages/Plans';
 import Contact from './components/pages/Contact';
+import Agreement from './components/pages/Agreement';
+import Notification from './components/pages/Notification';
 import Error from './components/pages/Error';
 
 const router = [
@@ -28,6 +30,16 @@ const router = [
     path: '/contact',
     exact: true,
     page: Contact,
+  },
+  {
+    path: '/agreement/:plan',
+    exact: true,
+    page: Agreement,
+  },
+  {
+    path: '/gerencianet/plan/notification',
+    exact: true,
+    page: Notification,
   },
   {
     path: '/*',

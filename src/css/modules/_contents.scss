@@ -1,0 +1,77 @@
+.il-content {
+  color: white;
+  position: relative;
+  top: 180px;
+  @media (min-width: 500px) {
+    top: 250px;
+  }
+  @media (min-width: 768px) {
+    top: 400px;
+  }
+  @media (min-width: 1024px) {
+    top: 100px;
+    width: 60%;
+  }
+  @media (min-width: 1360px) {
+    top: 100px;
+    width: 65%;
+  }
+  .il-content--text {
+    padding: 10px;
+    width: 100%;
+    @media (min-width: 500px) {
+      padding: 20px;
+    }
+    @media (min-width: 768px) {
+      padding: 40px;
+    }
+  }
+  &.il-contact {
+    top: 0;
+    width: 100%;
+    .il-content--text {
+      padding: 10px 0;
+    }
+    .il-plan--intro {
+      display: block;
+
+      @media (min-width: 1024px) {
+        display: flex;
+        justify-content: flex-start;
+        form.il-form {
+          flex: 2 1;
+        }
+      }
+      .il-description {
+        padding: 0 12px;
+        @media (min-width: 1024px) {
+          margin: 0 0.3rem;
+          flex: 1;
+        }
+        background: white;
+        color: $primaryColor;
+        box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
+        ul {
+          display: block;
+          li {
+            display: block;
+            width: 100%;
+            text-align: left;
+          }
+        }
+        span.il-description--price {
+          font-size: 1.4rem;
+          text-align: center;
+          display: block;
+          background: $primaryColor;
+          color: white;
+          font-weight: 700;
+          margin-bottom: 1rem;
+        }
+        p.il-description--text {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

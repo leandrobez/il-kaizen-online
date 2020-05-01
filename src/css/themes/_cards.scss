@@ -1,10 +1,10 @@
 .il-card--plans {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 110px));
-  grid-gap: 0.2rem 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
+  grid-gap: 0.1rem;
   @media (min-width: 500px) {
-    grid-template-columns: repeat(auto-fit, minmax(90px, 150px));
+    grid-template-columns: repeat(auto-fit, minmax(90px, 132px));
     grid-gap: 0.25rem 0.9rem;
   }
   @media (min-width: 768px) {
@@ -24,8 +24,12 @@
     border-radius: 10px;
     background: #342458;
     position: relative;
-    height: 220px;
-    padding: 15px;
+    height: 230px;
+    padding: 10px;
+    @media (min-width: 680px) {
+      height: 220px;
+      padding: 15px;
+    }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -39,9 +43,12 @@
       text-transform: uppercase;
     }
     .il-card--price {
-      font-size: 1.35rem;
+      font-size: 1.05rem;
+      @media (min-width: 500px) {
+        font-size: 1.15rem;
+      }
       @media (min-width: 768px) {
-        font-size: 1.5rem;
+        font-size: 1.45rem;
       }
     }
   }

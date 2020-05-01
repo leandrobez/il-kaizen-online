@@ -1,45 +1,18 @@
 /**MAIN*/
 main {
   position: relative;
+  padding-bottom: 1.5rem;
+  min-height: calc(100vh - 91px);
+  /** 
   height: calc(100vh - 91px);
   @media (min-width: 680px) {
     height: calc(100vh - 61px);
-  }
+  }*/
   @import '../themes/background';
   .il-no-background {
     visibility: hidden;
     position: absolute;
     left: -200%;
   }
-  .il-content {
-    color: white;
-    position: relative;
-    top: 180px;
-    @media (min-width: 500px) {
-      top: 250px;
-    }
-    @media (min-width: 768px) {
-      top: 400px;
-    }
-    @media (min-width: 1024px) {
-      top: 100px;
-      width: 60%;
-    }
-    @media (min-width: 1360px) {
-      top: 100px;
-      width: 65%;
-    }
-    &.il-contact {
-      top: 0;
-    }
-    .il-content--text {
-      padding: 10px;
-      @media (min-width: 500px) {
-        padding: 20px;
-      }
-      @media (min-width: 768px) {
-        padding: 40px;
-      }
-    }
-  }
+  @import '../modules/contents';
 }

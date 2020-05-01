@@ -8,7 +8,8 @@ button.il-btn {
   padding: 3px 4px;
   &.il-btn--plan,
   &.il-btn--video,
-  &.il-btn--card {
+  &.il-btn--card,
+  &.il-btn--submit {
     background: #983433;
     color: white;
     transition: all 450ms ease-in;
@@ -25,6 +26,7 @@ button.il-btn {
   &.il-btn--video {
     background: transparent;
     border: 2px solid white;
+    height: 48px;
     text-transform: uppercase;
     &:hover {
       transform: scale(0.95);
@@ -54,6 +56,12 @@ button.il-btn {
     @media screen and (min-width: 680px) {
       max-width: 43%;
     }
+  }
+  button {
+    cursor: pointer;
+  }
+  svg {
+    margin-right: 0.35rem;
   }
 }
 .il-card--buttons {

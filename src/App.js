@@ -24,7 +24,9 @@ function App() {
               </Switch>
             </div>
           </main>
-          <footer className="il-footer">footer</footer>
+          <footer className="il-footer">
+            <h4>Site By - www.internetlojas.com</h4>
+          </footer>
         </Router>
       </div>
     </div>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSign } from '@fortawesome/free-solid-svg-icons';
+import { faVideo } from '@fortawesome/free-solid-svg-icons';
 class About extends Component {
   render() {
     return (
@@ -17,10 +19,12 @@ class About extends Component {
           </p>
           <div className="il-buttons">
             <a href="/plans" className="il-btn il-btn--plan">
+            <FontAwesomeIcon icon={faSign} />
               Escolha um plano
             </a>
 
             <a href="/plans" className="il-btn il-btn--video">
+            <FontAwesomeIcon icon={faVideo} />
               Veja um vídeo
             </a>
           </div>

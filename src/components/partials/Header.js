@@ -15,22 +15,22 @@ class Header extends Component {
             <ul className="il-menu">
               <li>
                 <Link to="/" className="il-link">
-                  Home
+                  Início
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="il-link">
-                  About
+                  Sobre
                 </Link>
               </li>
               <li>
                 <Link to="/plans" className="il-link">
-                  Plans
+                  Planos
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="il-link">
-                  Contact
+                  Contato
                 </Link>
               </li>
             </ul>
