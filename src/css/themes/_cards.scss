@@ -1,32 +1,36 @@
 .il-card--plans {
-  margin-top: 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
-  grid-gap: 0.1rem;
-  @media (min-width: 500px) {
-    grid-template-columns: repeat(auto-fit, minmax(90px, 132px));
-    grid-gap: 0.25rem 0.9rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+
+  @media (min-width: 600px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 170px));
+    grid-gap: 0 0.25rem;
   }
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
-    grid-gap: 0.3rem 1.1rem;
+    grid-gap: 0.3rem;
   }
   @media (min-width: 1024px) {
     grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    grid-gap: 0.35rem 1.3rem;
+    grid-gap: 0.35rem;
   }
-
-  justify-content: center;
-  align-content: center;
   .il-card--item {
-    padding: 0;
+    margin: 10px auto;
     box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     background: #342458;
     position: relative;
-    height: 230px;
-    padding: 10px;
-    @media (min-width: 680px) {
+    height: 210px;
+    @media (max-width: 599px) {
+      width: 200px;
+    }
+    padding: 15px;
+    @media (min-width: 600px) {
       height: 220px;
       padding: 15px;
     }

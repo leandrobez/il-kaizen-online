@@ -1,35 +1,22 @@
 .il-background {
-  position: absolute;
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  max-height: 180px;
-  left: 50%;
-  transform: translateX(-50%);
-  @media (min-width: 500px) {
-    max-height: 250px;
-  }
-  @media (min-width: 768px) {
-    max-height: 400px;
-  }
-  @media (min-width: 1024px) {
-    //width: 40%;
-    left: 60%;
-    top: 40%;
-    max-height: 500px;
-    transform: translateY(-50%);
-  }
+  width: 500px;
+  height: 230px;
+  margin: auto;
+  position: relative;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   &.il-default {
-    background-image: url(../assets/about1.png);
+    background-image: url(../assets/default.png);
   }
   &.il-about {
     background-image: url(../assets/about.png);
   }
   &.il-plans {
     background-image: url(../assets/plans.png);
+  }
+  &.il-contact {
+    background-image: url(../assets/contact.png);
   }
   &:after {
     content: '';

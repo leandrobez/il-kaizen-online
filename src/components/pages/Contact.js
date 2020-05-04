@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import Alert from '../includes/Alert';
+import Loanding from '../includes/Loading';
+
 class Contact extends Component {
   constructor(props) {
     super(props);
@@ -42,11 +44,6 @@ class Contact extends Component {
     }
   };
 
-  handledLoad = () => {
-    let currentClass = this.state.showLoad ? 'il-load il-show' : 'il-load';
-    return currentClass;
-  };
-
   handledAlert = () => {
     let show = this.state.showAlert ? true : false;
     return show;
@@ -66,8 +63,9 @@ class Contact extends Component {
     if (fieldsError.length) {
       if (fieldsError.length > 1) {
         let errors = fieldsError.map((err, index) => (
-          <p key={'error_' + index}>{err}</p>
+          <li key={'error_' + index}>{err}</li>
         ));
+        errors = <ul>{errors}</ul>;
         msg = {
           type: 'warning',
           value: errors,
@@ -77,7 +75,11 @@ class Contact extends Component {
       } else {
         msg = {
           type: 'warning',
-          value: <p>{fieldsError[0]}</p>,
+          value: (
+            <ul>
+              <li>{fieldsError[0]}</li>
+            </ul>
+          ),
         };
         this.setState({ message: msg });
         return true;
@@ -101,14 +103,11 @@ class Contact extends Component {
       },
     });
     const templateId = 'template_NvqKKDA1';
-
     this.sendFeedback(templateId, {
       message_html: this.state.contact.message,
       from_name: this.state.contact.name,
       reply_to: process.env.REACT_APP_EMAIL_FROM,
     });
-
-    //return;
   };
 
   sendFeedback = async (templateId, variables) => {
@@ -142,17 +141,8 @@ class Contact extends Component {
 
   render() {
     return (
-      <div className="il-content il-contact">
-        <div className={this.handledLoad()}>
-          <div className="il-load--wrapper">
-            <p>Carregando...</p>
-            <div className="il-load--animate">
-              <span className="il-load--line"></span>
-              <span className="il-load--line"></span>
-              <span className="il-load--line"></span>
-            </div>
-          </div>
-        </div>
+      <div className="il-content">
+        <Loanding flag={this.state.showLoad} title="enviando" />
         <Alert message={this.state.message} show={this.handledAlert()} />
         <div className="il-content--text">
           <h1 className="il-big--title">Faça contato</h1>

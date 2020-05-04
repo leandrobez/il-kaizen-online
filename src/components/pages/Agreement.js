@@ -11,20 +11,20 @@ class Agreement extends Component {
       subscription: {},
       register: {
         user_id: '',
-        name: 'Leandro Bezerra',
-        email: 'leanbezerra@terra.com.br',
-        cpf: '70334641772',
-        birth: '1961-06-26',
-        phone_number: '5133983816',
+        name: '',
+        email: '',
+        cpf: '',
+        birth: '',
+        phone_number: '',
         pay: 'banking_billet',
         address: {
-          street: 'Av Jacuí',
-          number: '1248',
-          complement: 'Casa 5',
-          neighborhood: 'Cristal',
-          zipcode: '90810150',
-          city: 'Porto Alegre',
-          state: 'RS',
+          street: '',
+          number: '',
+          complement: '',
+          neighborhood: '',
+          zipcode: '',
+          city: '',
+          state: '',
         },
       },
     };
@@ -32,22 +32,22 @@ class Agreement extends Component {
 
   render() {
     return (
-      <div className="il-content il-contact">
+      <div className="il-content il-agreement">
         <div className="il-content--text">
           <h1 className="il-big--title">
             Contratar o plano {this.props.match.params.plan}
           </h1>
           <h3 className="il-subtitle">Preencha o formulário para continuar</h3>
           <p className="il-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-            repellat id quas! Corporis minus quam, magnam amet deserunt
-            perspiciatis adipisci sed sint ab!
+            Esses dados não serão divulgados e sua importância é apenas para o
+            controle eficiente dos pagamentos.
           </p>
         </div>
         <GerencianetContextProvider>
           <Register
             register={this.state.register}
             plan={this.props.match.params.plan}
+            {...this.props}
           />
         </GerencianetContextProvider>
       </div>

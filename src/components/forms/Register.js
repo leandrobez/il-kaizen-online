@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+
 import { GerencianetContext } from '../../context/GerencianetContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+
 import Alert from '../includes/Alert';
+import Loanding from '../includes/Loading';
+
 export default class Register extends Component {
   static contextType = GerencianetContext;
   constructor(props) {
@@ -47,11 +51,6 @@ export default class Register extends Component {
     );
   };
 
-  handledLoad = () => {
-    let currentClass = this.state.showLoad ? 'il-load il-show' : 'il-load';
-    return currentClass;
-  };
-
   handledAlert = () => {
     let show = this.state.showAlert ? true : false;
     return show;
@@ -92,7 +91,6 @@ export default class Register extends Component {
           fieldsError.push('O campo ' + props + ' é obrigatório.');
         }
       } else {
-        //const dataRegisterAddress = this.state.register.address;
         for (let props1 in dataRegister[props]) {
           if (dataRegister[props][props1] === '') {
             //store for show error
@@ -103,29 +101,21 @@ export default class Register extends Component {
         }
       }
     }
-    if (fieldsError.length) {
-      if (fieldsError.length > 1) {
-        let errors = fieldsError.map((err, index) => (
-          <p key={'error_' + index}>{err}</p>
-        ));
-        msg = {
-          type: 'warning',
-          value: errors,
-        };
-        this.setState({ message: msg });
-        return true;
-      } else {
-        msg = {
-          type: 'warning',
-          value: <p>{fieldsError[0]}</p>,
-        };
-        this.setState({ message: msg, showAlert: true }, (cb) => {
-          this.closeAlert();
-        });
-        return true;
-      }
+
+    if (fieldsError && fieldsError.length) {
+      let errors = fieldsError.map((err, index) => (
+        <li key={'error_' + index}>{err}</li>
+      ));
+      errors = <ul>{errors}</ul>;
+      msg = {
+        type: 'warning',
+        value: errors,
+      };
+      this.setState({ message: msg });
+      return true;
+    } else {
+      return false;
     }
-    return false;
   };
 
   register = async (e) => {
@@ -140,6 +130,10 @@ export default class Register extends Component {
         msg = register.message;
       }
       this.setState({ message: msg, showAlert: true }, (cb) => {
+        this.closeAlert();
+      });
+    } else {
+      this.setState({ showAlert: true }, (cb) => {
         this.closeAlert();
       });
     }
@@ -195,19 +189,10 @@ export default class Register extends Component {
   render() {
     return (
       <div>
-        <div className={this.handledLoad()}>
-          <div className="il-load--wrapper">
-            <p>Processando...</p>
-            <div className="il-load--animate">
-              <span className="il-load--line"></span>
-              <span className="il-load--line"></span>
-              <span className="il-load--line"></span>
-            </div>
-          </div>
-        </div>
+        <Loanding flag={this.state.showLoad} title="processando" />
         <Alert message={this.state.message} show={this.handledAlert()} />
         <div className="il-plan--intro">
-          <div className="il-description">
+          <div className="il-plan--description">
             <h4>O que você está contratando</h4>
             <ul>
               <li>

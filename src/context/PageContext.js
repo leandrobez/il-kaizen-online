@@ -8,6 +8,7 @@ class PageContextProvider extends Component {
       { name: '/home', class: 'il-default' },
       { name: '/about', class: 'il-about' },
       { name: '/plans', class: 'il-plans' },
+      { name: '/contact', class: 'il-contact' },
     ],
   };
 

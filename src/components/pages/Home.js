@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSign } from '@fortawesome/free-solid-svg-icons';
 import { faVideo } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,7 @@ class Home extends Component {
         <div className="il-content--text">
           <h1 className="il-big--title">Pilates em casa</h1>
           <h3 className="il-subtitle">
-            Aulas virtuais para você fazer no confoto do lar
+            Aulas virtuais de pilates no confoto do lar
           </h3>
           <p className="il-description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
@@ -19,15 +20,14 @@ class Home extends Component {
             animi!
           </p>
           <div className="il-buttons">
-            <a href="/plans" className="il-btn il-btn--plan">
+            <Link to="/plans" className="il-btn il-btn--plan">
               <FontAwesomeIcon icon={faSign} />
               Escolha um plano
-            </a>
-
-            <a href="/plans" className="il-btn il-btn--video">
+            </Link>
+            <Link to="/video" className="il-btn il-btn--video">
               <FontAwesomeIcon icon={faVideo} />
               Veja um vídeo
-            </a>
+            </Link>
           </div>
         </div>
       </div>

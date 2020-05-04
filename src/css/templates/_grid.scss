@@ -1,18 +1,14 @@
 .il-app {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
   min-height: 100vh;
   background: $primaryColor;
+  display: grid;
+  grid-template-rows: 1fr 40px;
   .il-container {
     width: 100%;
-    max-width: 1360px;
+    max-width: $maxWidth;
+    height: 100%;
     margin: auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto 30px;
-    @media screen and (min-width: 680px) {
-      grid-template-rows: 61px auto 30px;
-    }
     .il-container--wrapper {
       width: 100%;
       height: 100%;

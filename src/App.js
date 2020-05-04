@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Header from './components/partials/Header';
+import Footer from './components/partials/Footer';
 import Ilustration from './components/partials/Ilustration';
 /**Provider for page */
 import PageContextProvider from './context/PageContext';
@@ -24,11 +25,9 @@ function App() {
               </Switch>
             </div>
           </main>
-          <footer className="il-footer">
-            <h4>Site By - www.internetlojas.com</h4>
-          </footer>
         </Router>
       </div>
+      <Footer />
     </div>
   );
 }

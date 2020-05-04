@@ -7,9 +7,10 @@ import About from './components/pages/About';
 import Plans from './components/pages/Plans';
 import Contact from './components/pages/Contact';
 import Agreement from './components/pages/Agreement';
-import Notification from './components/pages/Notification';
-import Error from './components/pages/Error';
 
+import Notification from './components/pages/Notification';
+import Video from './components/pages/Video';
+import Error from './components/pages/Error';
 const router = [
   {
     path: '/',
@@ -27,7 +28,7 @@ const router = [
     page: Plans,
   },
   {
-    path: '/contact',
+    path: '/Contact',
     exact: true,
     page: Contact,
   },
@@ -40,6 +41,11 @@ const router = [
     path: '/gerencianet/plan/notification',
     exact: true,
     page: Notification,
+  },
+  {
+    path: '/video',
+    exact: true,
+    page: Video,
   },
   {
     path: '/*',

@@ -1,9 +1,41 @@
 footer.il-footer {
-  font-size: 5rem;
-  line-height: 11px;
   width: 100%;
-  height: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  color: rgb(102, 85, 85);
+  height: 100%;
+  .il-footer--content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: $maxWidth;
+    margin: auto;
+    @media screen and (min-width: 480px) {
+      width: 98%;
+    }
+    @media screen and (min-width: 680px) {
+      width: 96%;
+    }
+    @media screen and (min-width: 800px) {
+      width: 94%;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 92%;
+    }
+    @media screen and (min-width: 1200px) {
+      width: 90%;
+    }
+    @media screen and (min-width: 1360px) {
+      width: 85%;
+    }
+    .il-shares {
+      color: white;
+      display: flex;
+      span {
+        padding: 0 0.4rem;
+        display: block;
+        line-height: 23px;
+      }
+      img {
+        width: 23px;
+      }
+    }
+  }
 }

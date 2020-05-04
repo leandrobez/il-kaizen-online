@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b5e395af.chunk.css",
+    "main.js": "/static/js/main.1f9d31b7.chunk.js",
+    "main.js.map": "/static/js/main.1f9d31b7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.86e73222.js",
+    "runtime-main.js.map": "/static/js/runtime-main.86e73222.js.map",
+    "static/js/2.53736680.chunk.js": "/static/js/2.53736680.chunk.js",
+    "static/js/2.53736680.chunk.js.map": "/static/js/2.53736680.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.046ba4d67a33c4446344f6a1c61f0a02.js": "/precache-manifest.046ba4d67a33c4446344f6a1c61f0a02.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.b5e395af.chunk.css.map": "/static/css/main.b5e395af.chunk.css.map",
+    "static/js/2.53736680.chunk.js.LICENSE.txt": "/static/js/2.53736680.chunk.js.LICENSE.txt",
+    "static/media/styles.css": "/static/media/plans.cb1a72ad.png",
+    "static/media/aulasonline.mp4": "/static/media/aulasonline.9c398241.mp4"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.86e73222.js",
+    "static/js/2.53736680.chunk.js",
+    "static/css/main.b5e395af.chunk.css",
+    "static/js/main.1f9d31b7.chunk.js"
+  ]
+}

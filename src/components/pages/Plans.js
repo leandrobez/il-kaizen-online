@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandsHelping } from '@fortawesome/free-solid-svg-icons';
 class Plans extends Component {
@@ -10,7 +12,7 @@ class Plans extends Component {
     ];
 
     return (
-      <div className="il-content">
+      <div className="il-content il-content--plans">
         <div className="il-content--text">
           <h1 className="il-big--title">Escolha um plano</h1>
           <h3 className="il-subtitle">Pacotes de 1 a 3 vezes por semana</h3>
@@ -21,14 +23,14 @@ class Plans extends Component {
                 <span className="il-card--title">{plan.title}</span>
                 <span className="il-card--price">R$ {plan.price},00</span>
                 <div className="il-card--buttons">
-                  <a
-                    href={'/agreement' + plan.path}
+                  <Link
+                    to={'/agreement' + plan.path}
                     className="il-btn il-btn--card"
                     title={plan.title}
                   >
                     <FontAwesomeIcon icon={faHandsHelping} />
                     Contratar
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
