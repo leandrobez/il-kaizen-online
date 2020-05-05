@@ -13,9 +13,9 @@ class Ilustration extends Component {
     const page = this.props.location.pathname;
     return this.context.getClass(page);
   };
+
   render() {
     return <div className={this.getBackground()}></div>;
-    //return <>{this.getBackground}</>;
   }
 }
 

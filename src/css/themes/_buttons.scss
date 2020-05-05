@@ -20,6 +20,9 @@ button.il-btn {
       transform: scale(0.95);
     }
   }
+  &.il-btn--submit {
+    text-transform: uppercase;
+  }
   &.il-btn--plan {
     box-shadow: -2px 7px 15px rgba(110, 99, 99, 0.7);
   }

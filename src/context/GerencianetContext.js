@@ -9,13 +9,14 @@ class GerencianetContextProvider extends Component {
   state = {
     customer: {},
     register: {},
+    repeats: null,
     plans: [
       {
         id: 1,
         title: 'Basic',
         name: 'basic',
         description:
-          'Esse plano é válido por 1 ano (12 meses) a contar da confirmação do pagamento. A cobrança será feita mensalmente',
+          'Você faz 1 aula por semana. Totalizando 4 aulas no mês. A cobrança será feita mensalmente',
         price: 120,
       },
       {
@@ -23,7 +24,7 @@ class GerencianetContextProvider extends Component {
         title: 'Vip',
         name: 'vip',
         description:
-          'Esse plano é válido por 1 ano (12 meses) a contar da confirmação do pagamento. A cobrança será feita mensalmente',
+          'Você faz 2 aulas por semana. Totalizando 8 aulas no mês. A cobrança será feita mensalmente',
         price: 210,
       },
       {
@@ -31,7 +32,7 @@ class GerencianetContextProvider extends Component {
         title: 'Premium',
         name: 'premium',
         description:
-          'Esse plano é válido por 1 ano (12 meses) a contar da confirmação do pagamento. A cobrança será feita mensalmente',
+          'Você faz 3 aulas por semana. Totalizando 12 aulas no mês. A cobrança será feita mensalmente',
         price: 300,
       },
     ],
@@ -40,8 +41,8 @@ class GerencianetContextProvider extends Component {
     pay: {},
   };
 
-  setRegister = (register) => {
-    this.setState({ register: register });
+  setRegister = (register, repeats) => {
+    this.setState({ register: register, repeats: repeats });
   };
 
   getPlan = (name) => {
@@ -52,6 +53,7 @@ class GerencianetContextProvider extends Component {
   register = () => {
     //first register client and then make proccess
     const endPointRegister = 'customer/register';
+
     try {
       return GerencianetService.post(
         apiURL + endPointRegister,
@@ -88,7 +90,7 @@ class GerencianetContextProvider extends Component {
     const currentPlan = this.getPlan(plan),
       body = {
         name: currentPlan.name,
-        repeats: 6,
+        repeats: this.state.repeats,
         interval: 1,
       },
       endPointPlan = 'gerencianet/plan';

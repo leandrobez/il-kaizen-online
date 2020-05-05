@@ -10,7 +10,7 @@ class Agreement extends Component {
       plan: {},
       subscription: {},
       register: {
-        user_id: '',
+        repeats: '3',
         name: '',
         email: '',
         cpf: '',
@@ -40,7 +40,9 @@ class Agreement extends Component {
           <h3 className="il-subtitle">Preencha o formulário para continuar</h3>
           <p className="il-description">
             Esses dados não serão divulgados e sua importância é apenas para o
-            controle eficiente dos pagamentos.
+            controle eficiente dos pagamentos.<br></br>No formulário abaixo
+            escolha como deseja fazer o pagamento e escolha o total de meses que
+            gostaria.
           </p>
         </div>
         <GerencianetContextProvider>

@@ -40,15 +40,10 @@ export default class Register extends Component {
 
   componentDidMount = () => {
     let plan = this.context.getPlan(this.props.plan);
-    this.setState(
-      {
-        plan: plan,
-        register: this.props.register,
-      },
-      (cb) => {
-        this.context.setRegister(this.props.register);
-      }
-    );
+    this.setState({
+      plan: plan,
+      register: this.props.register,
+    });
   };
 
   handledAlert = () => {
@@ -118,6 +113,20 @@ export default class Register extends Component {
     }
   };
 
+  setRegister = () => {
+    const dataRegister = this.state.register;
+    let register = {};
+    let repeats = null;
+    for (let props in dataRegister) {
+      if (props !== 'repeats') {
+        register[props] = dataRegister[props];
+      } else {
+        repeats = register[props];
+      }
+    }
+    this.context.setRegister(register, repeats);
+  };
+
   register = async (e) => {
     e.preventDefault();
     //first check fields
@@ -126,6 +135,7 @@ export default class Register extends Component {
       //register client
       const register = await this.context.register();
       if (!register.error) {
+        this.createPlan();
       } else {
         msg = register.message;
       }
@@ -137,6 +147,34 @@ export default class Register extends Component {
         this.closeAlert();
       });
     }
+  };
+
+  getAddress = (e) => {
+    e.preventDefault();
+    const code = e.target.value;
+    let addressSuburb = window.document.getElementById('neighborhood'),
+      addressRua = window.document.getElementById('street'),
+      addressCity = window.document.getElementById('city'),
+      addressUF = window.document.getElementById('state');
+    const urlCorreio = 'https://viacep.com.br/ws';
+    fetch(`${urlCorreio}/${code}/json/`).then((res) => {
+      if (res.status === 200 && res.statusText === 'OK') {
+        res.json().then((address) => {
+          addressSuburb.value = address.bairro;
+          addressRua.value = address.logradouro;
+          addressCity.value = address.localidade;
+          addressUF.value = address.uf;
+          this.setState({
+            register: {
+              neighborhood: address.bairro,
+              street: address.logradouro,
+              city: address.localidade,
+              state: address.uf,
+            },
+          });
+        });
+      }
+    });
   };
 
   createPlan = () => {
@@ -198,7 +236,9 @@ export default class Register extends Component {
               <li>
                 Plano: <strong>{this.props.plan}</strong>
               </li>
-              <li>Validade: 4 meses</li>
+              <li>
+                Validade: <strong>{this.state.register.repeats}</strong> meses
+              </li>
             </ul>
             <span className="il-description--price">
               R$ {this.state.plan.price + ',00'}
@@ -216,21 +256,42 @@ export default class Register extends Component {
             </p>
           </div>
           <form className="il-form" onSubmit={this.register}>
+            <div className="il-form--field il-flex">
+              <div>
+                <label className="il-text-color--light" htmlFor="pay">
+                  Como quer pagar?
+                </label>
+                <select
+                  className="il-select"
+                  name="pay"
+                  id="pay"
+                  onChange={this.handledData}
+                >
+                  <option value="banking_billet" defaultValue>
+                    Boleto
+                  </option>
+                  <option value="credit_card">Cartão de Crédito</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="repeats" className="il-text-color--light">
+                  Validade do Plano
+                </label>
+                <select
+                  id="repeats"
+                  className="il-select"
+                  name="repeats"
+                  onChange={this.handledData}
+                >
+                  <option value="3" defaultValue>
+                    3 meses
+                  </option>
+                  <option value="4">4 meses</option>
+                  <option value="6">6 meses</option>
+                </select>
+              </div>
+            </div>
             <div className="il-form--field">
-              <label className="il-text-color--light" htmlFor="pay">
-                Como quer pagar?
-              </label>
-              <select
-                className="il-select"
-                name="pay"
-                id="pay"
-                onChange={this.handledData}
-              >
-                <option value="banking_billet" defaultValue>
-                  Boleto
-                </option>
-                <option value="credit_card">Cartão de Crédito</option>
-              </select>
               <label className="il-text-color--light" htmlFor="name">
                 Nome
               </label>
@@ -253,7 +314,6 @@ export default class Register extends Component {
                   onChange={this.handledData}
                 />
               </div>
-
               <div>
                 <label className="il-text-color--light" htmlFor="cpf">
                   CPF
@@ -287,6 +347,9 @@ export default class Register extends Component {
                   name="zipcode"
                   id="zipcode"
                   onChange={this.handledData}
+                  onBlur={(e) => {
+                    this.getAddress(e);
+                  }}
                 />
               </div>
               <div>

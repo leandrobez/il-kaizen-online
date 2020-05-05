@@ -1,5 +1,8 @@
 .il-content {
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   .il-content--text {
     padding: 0 10px;
     width: 100%;
@@ -20,7 +23,10 @@
       padding: 20px 0;
     }
   }
-  .il-plan--intro {
+  &.il-content--plans {
+    height: 100%;
+  }
+  &.il-agreement .il-plan--intro {
     display: block;
     @media (min-width: 1024px) {
       display: flex;
@@ -58,12 +64,6 @@
       p.il-description--text {
         font-size: 0.8rem;
       }
-    }
-  }
-  &.il-content--plans {
-    height: calc(100vh - 110px);
-    @media (min-width: 1024px) {
-      height: 100%;
     }
   }
   &.il-video {

@@ -4,15 +4,17 @@
   background: $primaryColor;
   display: grid;
   grid-template-rows: 1fr 40px;
+  overflow: hidden;
   .il-container {
     width: 100%;
     max-width: $maxWidth;
     height: 100%;
-    margin: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     .il-container--wrapper {
       width: 100%;
-      height: 100%;
-      margin: auto;
+      margin: 0 auto;
       @media screen and (min-width: 480px) {
         width: 98%;
       }

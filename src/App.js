@@ -14,12 +14,12 @@ function App() {
         <Router>
           <Header />
           <main>
-            <PageContextProvider>
-              <Switch>
-                <Ilustration />
-              </Switch>
-            </PageContextProvider>
-            <div className="il-container--wrapper">
+            <div className="il-main il-container--wrapper">
+              <PageContextProvider>
+                <Switch>
+                  <Ilustration />
+                </Switch>
+              </PageContextProvider>
               <Switch>
                 <Pages />
               </Switch>

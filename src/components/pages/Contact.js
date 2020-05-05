@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import Alert from '../includes/Alert';
 import Loanding from '../includes/Loading';
 
@@ -25,6 +27,8 @@ class Contact extends Component {
 
   closeAlert = () => {
     setTimeout(() => {
+      const alert = document.querySelector('.il-alert');
+      alert.classList.remove('move');
       this.setState({
         showAlert: false,
       });
@@ -71,6 +75,7 @@ class Contact extends Component {
           value: errors,
         };
         this.setState({ message: msg });
+        this.closeAlert();
         return true;
       } else {
         msg = {
@@ -82,6 +87,7 @@ class Contact extends Component {
           ),
         };
         this.setState({ message: msg });
+        this.closeAlert();
         return true;
       }
     }
@@ -198,7 +204,10 @@ class Contact extends Component {
               </div>
             </div>
             <div className="il-buttons">
-              <button className="il-btn il-btn--submit">Enviar</button>
+              <button className="il-btn il-btn--submit">
+              <FontAwesomeIcon icon={faThumbsUp} />
+              Enviar
+              </button>
             </div>
           </form>
         </div>
