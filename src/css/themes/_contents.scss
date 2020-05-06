@@ -26,45 +26,9 @@
   &.il-content--plans {
     height: 100%;
   }
-  &.il-agreement .il-plan--intro {
-    display: block;
-    @media (min-width: 1024px) {
-      display: flex;
-      justify-content: flex-start;
-      form.il-form {
-        flex: 2 1;
-      }
-    }
-    .il-plan--description {
-      background: white;
-      color: $primaryColor;
-      box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
-      padding: 0 12px;
-      @media (min-width: 1024px) {
-        margin: 0 0.3rem;
-        flex: 1;
-      }
-      ul {
-        display: block;
-        li {
-          display: block;
-          width: 100%;
-          text-align: left;
-        }
-      }
-      span.il-description--price {
-        font-size: 1.4rem;
-        text-align: center;
-        display: block;
-        background: $primaryColor;
-        color: white;
-        font-weight: 700;
-        margin-bottom: 1rem;
-      }
-      p.il-description--text {
-        font-size: 0.8rem;
-      }
-    }
+  &.il-agreement .il-register {
+    position: relative;
+    @import '../modules/register';
   }
   &.il-video {
     top: 0;

@@ -1,5 +1,6 @@
 /**HEADER */
 /**themes colors */
+/**MODAL*/
 /**texts colors*/
 /**links colors*/
 @import url("https://fonts.googleapis.com/css?family=Abel|Rubik|Montserrat&display=swap");
@@ -385,6 +386,10 @@ main .il-main section.il-section {
   }
 }
 
+.il-color--text__light {
+  color: #fefefe;
+}
+
 .il-background {
   width: 100%;
   max-width: 500px;
@@ -477,12 +482,16 @@ main .il-main section.il-section {
   height: 100%;
 }
 
-.il-content.il-agreement .il-plan--intro {
+.il-content.il-agreement .il-register {
+  position: relative;
+}
+
+.il-content.il-agreement .il-register .il-plan--intro {
   display: block;
 }
 
 @media (min-width: 1024px) {
-  .il-content.il-agreement .il-plan--intro {
+  .il-content.il-agreement .il-register .il-plan--intro {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -490,14 +499,14 @@ main .il-main section.il-section {
         -ms-flex-pack: start;
             justify-content: flex-start;
   }
-  .il-content.il-agreement .il-plan--intro form.il-form {
+  .il-content.il-agreement .il-register .il-plan--intro form.il-form {
     -webkit-box-flex: 2;
         -ms-flex: 2 1;
             flex: 2 1;
   }
 }
 
-.il-content.il-agreement .il-plan--intro .il-plan--description {
+.il-content.il-agreement .il-register .il-plan--intro .il-plan--description {
   background: white;
   color: #524e4e;
   -webkit-box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
@@ -506,7 +515,7 @@ main .il-main section.il-section {
 }
 
 @media (min-width: 1024px) {
-  .il-content.il-agreement .il-plan--intro .il-plan--description {
+  .il-content.il-agreement .il-register .il-plan--intro .il-plan--description {
     margin: 0 0.3rem;
     -webkit-box-flex: 1;
         -ms-flex: 1;
@@ -514,17 +523,17 @@ main .il-main section.il-section {
   }
 }
 
-.il-content.il-agreement .il-plan--intro .il-plan--description ul {
+.il-content.il-agreement .il-register .il-plan--intro .il-plan--description ul {
   display: block;
 }
 
-.il-content.il-agreement .il-plan--intro .il-plan--description ul li {
+.il-content.il-agreement .il-register .il-plan--intro .il-plan--description ul li {
   display: block;
   width: 100%;
   text-align: left;
 }
 
-.il-content.il-agreement .il-plan--intro .il-plan--description span.il-description--price {
+.il-content.il-agreement .il-register .il-plan--intro .il-plan--description span.il-description--price {
   font-size: 1.4rem;
   text-align: center;
   display: block;
@@ -534,8 +543,39 @@ main .il-main section.il-section {
   margin-bottom: 1rem;
 }
 
-.il-content.il-agreement .il-plan--intro .il-plan--description p.il-description--text {
+.il-content.il-agreement .il-register .il-plan--intro .il-plan--description p.il-description--text {
   font-size: 0.8rem;
+}
+
+.il-content.il-agreement .il-register .il-credit-card--container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  visibility: hidden;
+  -webkit-transition: all 450ms ease-in;
+  transition: all 450ms ease-in;
+}
+
+.il-content.il-agreement .il-register .il-credit-card--container.il-show {
+  visibility: visible;
+}
+
+.il-content.il-agreement .il-register .il-credit-card--container .il-credit-card {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding: 15px;
+  margin: auto;
+  border-radius: 12px;
+  background: #8a9194;
+  -webkit-box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.7);
+          box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.7);
 }
 
 .il-content.il-video {

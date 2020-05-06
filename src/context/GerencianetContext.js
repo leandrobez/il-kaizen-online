@@ -53,7 +53,6 @@ class GerencianetContextProvider extends Component {
   register = () => {
     //first register client and then make proccess
     const endPointRegister = 'customer/register';
-
     try {
       return GerencianetService.post(
         apiURL + endPointRegister,
@@ -198,10 +197,12 @@ class GerencianetContextProvider extends Component {
         },
       };
     } else {
+      const paymentToken = window.payLoad();
       payBody = {
         payment: {
           credit_card: {
-            payment_token: 'payment_token_aqui',
+            installments: 1,
+            payment_token: paymentToken,
             billing_address: this.state.customer.address,
             customer: customer,
           },
@@ -225,7 +226,7 @@ class GerencianetContextProvider extends Component {
               message: {
                 type: 'success',
                 value:
-                  'Sua inscrição foi realizada com sucesso. Verifique sua caixa de email para mais detalhes.',
+                  'Sua inscrição foi realizada com sucesso. Verifique sua caixa de email para mais detalhes sobre o pagamento. Assim que tivermos a confirmação do mesmo o seu acesso as aulas estará liberado.',
               },
             };
           }

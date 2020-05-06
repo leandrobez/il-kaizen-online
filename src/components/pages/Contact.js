@@ -129,7 +129,6 @@ class Contact extends Component {
           },
           showAlert: true,
         });
-
         this.closeAlert();
       })
       // Handle errors here however you like, or use a React error boundary

@@ -6,6 +6,7 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 import Alert from '../includes/Alert';
 import Loanding from '../includes/Loading';
+import CreditCard from '../includes/CreditCard';
 
 export default class Register extends Component {
   static contextType = GerencianetContext;
@@ -18,6 +19,7 @@ export default class Register extends Component {
       subscription: {},
       showAlert: false,
       showLoad: false,
+      showCreditCard: false,
       message: {
         type: null,
         value: null,
@@ -25,6 +27,15 @@ export default class Register extends Component {
     };
   }
 
+
+  componentDidMount = () => {
+    let plan = this.context.getPlan(this.props.plan);
+    this.setState({
+      plan: plan,
+      register: this.props.register,
+    });
+  };
+  
   closeAlert = () => {
     setTimeout(() => {
       this.setState({
@@ -38,17 +49,23 @@ export default class Register extends Component {
     }, 4000);
   };
 
-  componentDidMount = () => {
-    let plan = this.context.getPlan(this.props.plan);
-    this.setState({
-      plan: plan,
-      register: this.props.register,
-    });
-  };
-
+  makePayToken = () => {
+    return
+  }
   handledAlert = () => {
     let show = this.state.showAlert ? true : false;
     return show;
+  };
+
+  handledModal = () => {
+    let show = this.state.showCreditCard ? true : false;
+    return show;
+  };
+
+  closeModal = () => {
+    this.setState({
+      showCreditCard: false,
+    });
   };
 
   handledData = (e) => {
@@ -57,6 +74,11 @@ export default class Register extends Component {
     for (let props in dataRegister) {
       if (props === e.target.name) {
         register[e.target.name] = e.target.value;
+        if (props === 'pay' && e.target.value === 'credit_card') {
+          this.setState({
+            showCreditCard: true,
+          });
+        }
       } else {
         if (props === 'address') {
           let dataRegisterAddress = this.state.register.address;
@@ -139,14 +161,18 @@ export default class Register extends Component {
       } else {
         msg = register.message;
       }
-      this.setState({ message: msg, showAlert: true }, (cb) => {
-        this.closeAlert();
-      });
+      this.setAlert(msg);
     } else {
       this.setState({ showAlert: true }, (cb) => {
         this.closeAlert();
       });
     }
+  };
+
+  setAlert = (msg) => {
+    this.setState({ message: msg, showAlert: true }, (cb) => {
+      this.closeAlert();
+    });
   };
 
   getAddress = (e) => {
@@ -226,7 +252,7 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className="il-register">
         <Loanding flag={this.state.showLoad} title="processando" />
         <Alert message={this.state.message} show={this.handledAlert()} />
         <div className="il-plan--intro">
@@ -398,7 +424,6 @@ export default class Register extends Component {
                   onChange={this.handledData}
                 />
               </div>
-
               <div>
                 <label className="il-text-color--light" htmlFor="neighborhood">
                   Bairro
@@ -422,7 +447,6 @@ export default class Register extends Component {
                 />
               </div>
             </div>
-
             <div className="il-form--field il-flex">
               <div>
                 <label className="il-text-color--light" htmlFor="phone_number">
@@ -445,6 +469,12 @@ export default class Register extends Component {
             </div>
           </form>
         </div>
+        <CreditCard
+          show={this.handledModal()}
+          setAlert={this.setAlert}
+          close={this.closeModal}
+          payToken={this.makePayToken}
+        />
       </div>
     );
   }
