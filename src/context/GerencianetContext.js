@@ -1,6 +1,8 @@
 import React, { createContext, Component } from 'react';
 
+/**services Gerencianet*/
 import GerencianetService from '../services/GerencianetService';
+import PayTokenGN from '../services/PayTokenGN';
 import { apiURL } from '../services/GerencianetService';
 const moment = require('moment');
 
@@ -39,6 +41,11 @@ class GerencianetContextProvider extends Component {
     subscription: {},
     plan: {},
     pay: {},
+  };
+
+  getPayToken = () => {
+    
+    PayTokenGN();
   };
 
   setRegister = (register, repeats) => {
@@ -253,6 +260,7 @@ class GerencianetContextProvider extends Component {
           getPlan: this.getPlan,
           createPlan: this.createPlan,
           createSubscription: this.createSubscription,
+          getPayToken: this.getPayToken,
           createPay: this.createPay,
         }}
       >

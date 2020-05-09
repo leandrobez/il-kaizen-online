@@ -1,7 +1,17 @@
 .il-background {
   width: 100%;
-  max-width: 500px;
-  height: 230px;
+  height: 100%;
+
+  @media screen and (min-width: 500px) {
+    max-width: 340px;
+  }
+  @media screen and (min-width: 768px) {
+    max-width: 400px;
+  }
+  @media screen and (min-width: 1024px) {
+    flex: 1;
+  }
+
   margin: auto;
   position: relative;
   background-position: center;
@@ -17,7 +27,11 @@
     background-image: url(../assets/plans.png);
   }
   &.il-contact {
-    background-image: url(../assets/contact.png);
+    height: 0;
+    @media screen and (min-width: 1024px) {
+      height: 100%;
+      background-image: url(../assets/contact.png);
+    }
   }
   &:after {
     content: '';

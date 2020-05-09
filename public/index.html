@@ -31,24 +31,37 @@
         emailjs.init('user_uMHfUIFrQq8VXZH2ltQci'); // Obtain your user ID at the dashboard https://dashboard.emailjs.com/integration
       })();
     </script>
-    <script type="module">
-      const payLoad = () => {
-        /**Inicio do script para gerar o payment_token do cartão de crédito */
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        var v = parseInt(Math.random() * 1000000);
-        s.src =
-          'https://sandbox.gerencianet.com.br/v1/cdn/b73a1b070c537a1010c3cca1d6df7092/' +
-          v;
-        s.async = false;
-        s.id = 'b73a1b070c537a1010c3cca1d6df7092';
-        if (!document.getElementById('b73a1b070c537a1010c3cca1d6df7092')) {
-          document.getElementsByTagName('head')[0].appendChild(s);
-        }
+    <script>
+      let $gn = {
+        validForm: true,
+        processed: false,
+        done: {},
+        ready: function (fn) {
+          $gn.done = fn;
+        },
       };
-      (function () {
-        export default payLoad;
-      })();
+
+      let _token = null;
+      let _mask = null;
+      const key = 'card';
+      const f = window.localStorage;
+
+      $gn.ready((checkout) => {
+        const callback = (error, response) => {
+          if (error) {
+            // Trata o erro ocorrido
+            console.error(error);
+          } else {
+            _token = response.data.payment_token;
+            _mask = response.data.card_mask;
+            f.setItem('cardConfig', JSON.stringify({ _token, _mask }));
+          }
+        };
+        //get card from localsttore
+        const card = JSON.parse(f.getItem(key));
+        //first store card localstore
+        checkout.getPaymentToken(card, callback);
+      });
     </script>
   </body>
 </html>

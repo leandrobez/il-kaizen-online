@@ -9,24 +9,6 @@ class Agreement extends Component {
     this.state = {
       plan: {},
       subscription: {},
-      register: {
-        repeats: '3',
-        name: '',
-        email: '',
-        cpf: '',
-        birth: '',
-        phone_number: '',
-        pay: 'banking_billet',
-        address: {
-          street: '',
-          number: '',
-          complement: '',
-          neighborhood: '',
-          zipcode: '',
-          city: '',
-          state: '',
-        },
-      },
     };
   }
 
@@ -47,7 +29,6 @@ class Agreement extends Component {
         </div>
         <GerencianetContextProvider>
           <Register
-            register={this.state.register}
             plan={this.props.match.params.plan}
             {...this.props}
           />

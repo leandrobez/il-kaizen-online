@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-
+import CustomerRegister from '../includes/CustomerRegister';
 import { GerencianetContext } from '../../context/GerencianetContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 import Alert from '../includes/Alert';
 import Loanding from '../includes/Loading';
@@ -13,7 +11,27 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      register: {},
+      register: {
+        repeats: '3',
+        name: '',
+        email: '',
+        cpf: '',
+        birth: '',
+        phone_number: '',
+        pay: 'banking_billet',
+        address: {
+          street: '',
+          number: '',
+          complement: '',
+          neighborhood: '',
+          zipcode: '',
+          city: '',
+          state: '',
+        },
+      },
+      card: {},
+      payment_token: null,
+      mask: null,
       assigned: {},
       plan: {},
       subscription: {},
@@ -27,15 +45,19 @@ export default class Register extends Component {
     };
   }
 
-
   componentDidMount = () => {
     let plan = this.context.getPlan(this.props.plan);
     this.setState({
       plan: plan,
-      register: this.props.register,
     });
   };
-  
+
+  setAlert = (msg) => {
+    this.setState({ message: msg, showAlert: true }, (cb) => {
+      this.closeAlert();
+    });
+  };
+
   closeAlert = () => {
     setTimeout(() => {
       this.setState({
@@ -49,94 +71,31 @@ export default class Register extends Component {
     }, 4000);
   };
 
-  makePayToken = () => {
-    return
-  }
   handledAlert = () => {
-    let show = this.state.showAlert ? true : false;
-    return show;
-  };
-
-  handledModal = () => {
-    let show = this.state.showCreditCard ? true : false;
-    return show;
+    return this.state.showAlert ? true : false;
   };
 
   closeModal = () => {
+    let register = this.state.register;
+    register.pay = 'banking_billet';
+
     this.setState({
       showCreditCard: false,
+      register: register,
     });
   };
 
-  handledData = (e) => {
-    let dataRegister = this.state.register;
-    let register = dataRegister;
-    for (let props in dataRegister) {
-      if (props === e.target.name) {
-        register[e.target.name] = e.target.value;
-        if (props === 'pay' && e.target.value === 'credit_card') {
-          this.setState({
-            showCreditCard: true,
-          });
-        }
-      } else {
-        if (props === 'address') {
-          let dataRegisterAddress = this.state.register.address;
-          let address = dataRegisterAddress;
-          for (let props1 in address) {
-            if (props1 === e.target.name) {
-              register.address[e.target.name] = e.target.value;
-            }
-          }
-        }
-      }
-      this.setState({
-        register: register,
-      });
-    }
+  setModal = () => {
+    this.setState({
+      showCreditCard: true,
+    });
   };
 
-  checkField = () => {
-    let fieldsError = [];
-    let msg = null;
-    //get state
-    const dataRegister = this.state.register;
-    for (let props in dataRegister) {
-      if (props !== 'address') {
-        if (props !== 'user_id' && dataRegister[props] === '') {
-          //store for show error
-          fieldsError.push('O campo ' + props + ' é obrigatório.');
-        }
-      } else {
-        for (let props1 in dataRegister[props]) {
-          if (dataRegister[props][props1] === '') {
-            //store for show error
-            fieldsError.push(
-              'O campo ' + props1 + ' para o item endereço é obrigatório.'
-            );
-          }
-        }
-      }
-    }
-
-    if (fieldsError && fieldsError.length) {
-      let errors = fieldsError.map((err, index) => (
-        <li key={'error_' + index}>{err}</li>
-      ));
-      errors = <ul>{errors}</ul>;
-      msg = {
-        type: 'warning',
-        value: errors,
-      };
-      this.setState({ message: msg });
-      return true;
-    } else {
-      return false;
-    }
+  handledModal = () => {
+    return this.state.showCreditCard ? true : false;
   };
 
-  setRegister = () => {
-    const dataRegister = this.state.register;
+  setRegister = (dataRegister) => {
     let register = {};
     let repeats = null;
     for (let props in dataRegister) {
@@ -147,60 +106,55 @@ export default class Register extends Component {
       }
     }
     this.context.setRegister(register, repeats);
+    this.submitRegister();
   };
 
-  register = async (e) => {
-    e.preventDefault();
-    //first check fields
-    if (!this.checkField()) {
-      let msg = '';
-      //register client
-      const register = await this.context.register();
-      if (!register.error) {
-        this.createPlan();
-      } else {
-        msg = register.message;
-      }
-      this.setAlert(msg);
+  submitRegister = async () => {
+    let msg = '';
+    //register client
+    const register = await this.context.register();
+    if (!register.error) {
+      this.createPlan();
     } else {
-      this.setState({ showAlert: true }, (cb) => {
-        this.closeAlert();
-      });
+      msg = register.message;
     }
+    this.setAlert(msg);
   };
 
-  setAlert = (msg) => {
-    this.setState({ message: msg, showAlert: true }, (cb) => {
-      this.closeAlert();
+  setCard = (card) => {
+    window.localStorage.removeItem('cardConfig');
+    window.localStorage.removeItem('card');
+    this.setState({
+      card: card,
     });
-  };
+    //first store card localstore
+    const key = 'card';
+    const f = window.localStorage;
 
-  getAddress = (e) => {
-    e.preventDefault();
-    const code = e.target.value;
-    let addressSuburb = window.document.getElementById('neighborhood'),
-      addressRua = window.document.getElementById('street'),
-      addressCity = window.document.getElementById('city'),
-      addressUF = window.document.getElementById('state');
-    const urlCorreio = 'https://viacep.com.br/ws';
-    fetch(`${urlCorreio}/${code}/json/`).then((res) => {
-      if (res.status === 200 && res.statusText === 'OK') {
-        res.json().then((address) => {
-          addressSuburb.value = address.bairro;
-          addressRua.value = address.logradouro;
-          addressCity.value = address.localidade;
-          addressUF.value = address.uf;
-          this.setState({
-            register: {
-              neighborhood: address.bairro,
-              street: address.logradouro,
-              city: address.localidade,
-              state: address.uf,
-            },
-          });
-        });
-      }
-    });
+    f.setItem(
+      key,
+      JSON.stringify({
+        brand: 'visa', // bandeira do cartão
+        number: '4012001038443335', // número do cartão
+        cvv: '123', // código de segurança
+        expiration_month: '05', // mês de vencimento
+        expiration_year: '2021', // ano de vencimento
+      })
+    );
+
+    //action context
+    this.context.getPayToken();
+    /*wait 6s to get payload e reset localstore */
+    setTimeout(() => {
+      //get payment_token and card_mask
+      let cardConfig = JSON.parse(window.localStorage.getItem('cardConfig'));
+      this.setState({
+        payment_token: cardConfig._token,
+        mask: cardConfig._mask,
+      });
+      //erase card
+      f.removeItem(key);
+    }, 6000);
   };
 
   createPlan = () => {
@@ -281,199 +235,18 @@ export default class Register extends Component {
               sed temporibus! Rerum asperiores obcaecati cupiditate quia.
             </p>
           </div>
-          <form className="il-form" onSubmit={this.register}>
-            <div className="il-form--field il-flex">
-              <div>
-                <label className="il-text-color--light" htmlFor="pay">
-                  Como quer pagar?
-                </label>
-                <select
-                  className="il-select"
-                  name="pay"
-                  id="pay"
-                  onChange={this.handledData}
-                >
-                  <option value="banking_billet" defaultValue>
-                    Boleto
-                  </option>
-                  <option value="credit_card">Cartão de Crédito</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="repeats" className="il-text-color--light">
-                  Validade do Plano
-                </label>
-                <select
-                  id="repeats"
-                  className="il-select"
-                  name="repeats"
-                  onChange={this.handledData}
-                >
-                  <option value="3" defaultValue>
-                    3 meses
-                  </option>
-                  <option value="4">4 meses</option>
-                  <option value="6">6 meses</option>
-                </select>
-              </div>
-            </div>
-            <div className="il-form--field">
-              <label className="il-text-color--light" htmlFor="name">
-                Nome
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                onChange={this.handledData}
-              />
-            </div>
-            <div className="il-form--field il-flex">
-              <div>
-                <label className="il-text-color--light" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-text-color--light" htmlFor="cpf">
-                  CPF
-                </label>
-                <input
-                  type="text"
-                  name="cpf"
-                  id="cpf"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-text-color--light" htmlFor="birth">
-                  Nasc
-                </label>
-                <input
-                  type="date"
-                  name="birth"
-                  id="birth"
-                  onChange={this.handledData}
-                />
-              </div>
-            </div>
-            <div className="il-form--field  il-flex">
-              <div>
-                <label className="il-text-color--light" htmlFor="zipcode">
-                  CEP
-                </label>
-                <input
-                  type="text"
-                  name="zipcode"
-                  id="zipcode"
-                  onChange={this.handledData}
-                  onBlur={(e) => {
-                    this.getAddress(e);
-                  }}
-                />
-              </div>
-              <div>
-                <label className="il-text-color--light" htmlFor="city">
-                  Cidade
-                </label>
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-text-color--light" htmlFor="street">
-                  Rua/Av
-                </label>
-                <input
-                  type="text"
-                  name="street"
-                  id="street"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-text-color--light" htmlFor="number">
-                  Nr
-                </label>
-                <input
-                  type="text"
-                  name="number"
-                  id="number"
-                  onChange={this.handledData}
-                />
-              </div>
-            </div>
-            <div className="il-form--field il-flex">
-              <div>
-                <label className="il-text-color--light" htmlFor="complement">
-                  Complemento
-                </label>
-                <input
-                  type="text"
-                  name="complement"
-                  id="complement"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-text-color--light" htmlFor="neighborhood">
-                  Bairro
-                </label>
-                <input
-                  type="text"
-                  name="neighborhood"
-                  id="neighborhood"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-text-color--light" htmlFor="state">
-                  Estado
-                </label>
-                <input
-                  type="text"
-                  name="state"
-                  id="state"
-                  onChange={this.handledData}
-                />
-              </div>
-            </div>
-            <div className="il-form--field il-flex">
-              <div>
-                <label className="il-text-color--light" htmlFor="phone_number">
-                  Fone
-                </label>
-                <input
-                  type="phone"
-                  name="phone_number"
-                  id="phone_number"
-                  placeholder="use ddd no formato XXXXXXXXXX"
-                  onChange={this.handledData}
-                />
-              </div>
-            </div>
-            <div className="il-buttons">
-              <button className="il-btn il-btn--submit">
-                <FontAwesomeIcon icon={faThumbsUp} />
-                Assinar plano
-              </button>
-            </div>
-          </form>
         </div>
+        <CustomerRegister
+          register={this.state.register}
+          setAlert={this.setAlert}
+          setRegister={this.setRegister}
+          setModal={this.setModal}
+        />
         <CreditCard
           show={this.handledModal()}
           setAlert={this.setAlert}
           close={this.closeModal}
-          payToken={this.makePayToken}
+          setCard={this.setCard}
         />
       </div>
     );

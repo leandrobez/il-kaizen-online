@@ -392,13 +392,32 @@ main .il-main section.il-section {
 
 .il-background {
   width: 100%;
-  max-width: 500px;
-  height: 230px;
+  height: 100%;
   margin: auto;
   position: relative;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 500px) {
+  .il-background {
+    max-width: 340px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .il-background {
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .il-background {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
 }
 
 .il-background.il-default {
@@ -414,7 +433,14 @@ main .il-main section.il-section {
 }
 
 .il-background.il-contact {
-  background-image: url(../assets/contact.png);
+  height: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .il-background.il-contact {
+    height: 100%;
+    background-image: url(../assets/contact.png);
+  }
 }
 
 .il-background:after {
@@ -440,6 +466,14 @@ main .il-main section.il-section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .il-content {
+    -webkit-box-flex: 2;
+        -ms-flex: 2 1;
+            flex: 2 1;
+  }
 }
 
 .il-content .il-content--text {
@@ -549,11 +583,10 @@ main .il-main section.il-section {
 
 .il-content.il-agreement .il-register .il-credit-card--container {
   position: absolute;
-  top: 0;
+  top: -20vh;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -566,6 +599,37 @@ main .il-main section.il-section {
   visibility: visible;
 }
 
+.il-content.il-agreement .il-register .il-credit-card--container .il-close--modal {
+  position: relative;
+  top: 26%;
+  left: 50%;
+  z-index: 2;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 1.8rem;
+  height: 1.8rem;
+  background: #303131;
+  font-size: 1.5rem;
+  color: #7d8486;
+  line-height: 1.8rem;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.il-content.il-agreement .il-register .il-credit-card--container .il-close--modal svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.il-content.il-agreement .il-register .il-credit-card--container .il-close--modal:hover {
+  font-size: 1.8rem;
+}
+
+.il-content.il-agreement .il-register .il-credit-card--container .il-close--modal:hover svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
 .il-content.il-agreement .il-register .il-credit-card--container .il-credit-card {
   position: relative;
   width: 100%;
@@ -573,9 +637,10 @@ main .il-main section.il-section {
   padding: 15px;
   margin: auto;
   border-radius: 12px;
-  background: #8a9194;
-  -webkit-box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.7);
-          box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.7);
+  color: #454232;
+  background: #9fa3a7;
+  -webkit-box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.8);
+          box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.8);
 }
 
 .il-content.il-video {

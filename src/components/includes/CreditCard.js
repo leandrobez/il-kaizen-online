@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 export default class CreditCard extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +51,7 @@ export default class CreditCard extends Component {
       this.setState({
         card: dataCard,
       });
+
       return false;
     }
   };
@@ -62,6 +63,7 @@ export default class CreditCard extends Component {
       this.props.setAlert(check);
     } else {
       this.close();
+      this.props.setCard(this.state.card);
     }
   };
 
@@ -69,7 +71,6 @@ export default class CreditCard extends Component {
     let modal = document.querySelector('.il-credit-card--container.il-show');
     modal.classList.remove('il-show');
     this.props.close();
-    this.payToken();
   };
 
   handledData = (e) => {
@@ -88,10 +89,24 @@ export default class CreditCard extends Component {
   render() {
     return (
       <div className={this.getHasActived()}>
+        <a
+          href="#!"
+          className="il-close--modal"
+          onClick={(e) => {
+            e.preventDefault();
+            this.props.close();
+          }}
+        >
+          <FontAwesomeIcon icon={faTimesCircle} />
+        </a>
         <div className="il-credit-card">
           <h4 className="il-color--text__light il-center">
             Dados do seu cartão
           </h4>
+          <p>
+            Preencha os dados do seu cartão e na sequência preencha o cadastro.
+            Isso é importante para continuarmos.
+          </p>
           <form className="il-form" onSubmit={this.setCard}>
             <div className="il-form--field il-flex">
               <div>
