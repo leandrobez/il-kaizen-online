@@ -13,11 +13,10 @@ class Home extends Component {
             Aulas virtuais de pilates no confoto do lar
           </h3>
           <p className="il-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-            reiciendis necessitatibus aut nemo temporibus magnam maiores totam
-            quibusdam. Saepe assumenda magni minima, debitis odit, a asperiores
-            animi quis deserunt molestiae eius. Cupiditate, maiores placeat
-            animi!
+            Você gostaria de praticar exercícios de pilates, mas a situação que
+            estamos passando diz que a melhor opção é ficar em casa.<br></br>
+            Então porquê não fazer no conforto do seu lar.<br></br>Escolha um
+            plano e garanta sua vaga.
           </p>
           <div className="il-buttons">
             <Link to="/plans" className="il-btn il-btn--plan">

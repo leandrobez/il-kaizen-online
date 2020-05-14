@@ -1,0 +1,41 @@
+.il-checkout--result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 800px) {
+    flex-direction: row-reverse;
+  }
+  .il-result--data {
+    background: #dfeedf;
+    color: hsl(199, 14%, 38%);
+    &:first-child {
+      margin-bottom: 0.3rem;
+    }
+    .il-data--inner {
+      span {
+        display: block;
+        em {
+          font-size: 0.7rem;
+          font-weight: 700;
+        }
+      }
+      p span {
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+    }
+    @media (min-width: 800px) {
+      &:first-child {
+        flex: 3 1;
+        background: #dfeedf;
+        padding: 0.5rem 0.3rem;
+      }
+      &:last-child {
+        background: #bec0c0;
+        padding: 0.5rem 0.3rem;
+        margin-right: 0.35rem;
+      }
+    }
+  }
+}

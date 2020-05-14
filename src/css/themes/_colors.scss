@@ -1,5 +1,12 @@
 .il-color {
   &--text {
+    &__green {
+      color: #97eb2a;
+    }
+    &__dark {
+      color: $primaryColor;
+      font-weight: 700;
+    }
     &__light {
       color: #fefefe;
     }

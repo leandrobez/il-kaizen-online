@@ -7,6 +7,7 @@ import About from './components/pages/About';
 import Plans from './components/pages/Plans';
 import Contact from './components/pages/Contact';
 import Agreement from './components/pages/Agreement';
+import Checkout from './components/pages/Checkout';
 
 import Notification from './components/pages/Notification';
 import Video from './components/pages/Video';
@@ -46,6 +47,11 @@ const router = [
     path: '/video',
     exact: true,
     page: Video,
+  },
+  {
+    path: '/checkout/:flag',
+    exact: true,
+    page: Checkout,
   },
   {
     path: '/*',

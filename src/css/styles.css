@@ -386,6 +386,15 @@ main .il-main section.il-section {
   }
 }
 
+.il-color--text__green {
+  color: #97eb2a;
+}
+
+.il-color--text__dark {
+  color: #524e4e;
+  font-weight: 700;
+}
+
 .il-color--text__light {
   color: #fefefe;
 }
@@ -518,29 +527,68 @@ main .il-main section.il-section {
 
 .il-content.il-agreement .il-register {
   position: relative;
-}
-
-.il-content.il-agreement .il-register .il-plan--intro {
+  /* 
+.il-plan--intro {
   display: block;
-}
-
-@media (min-width: 1024px) {
-  .il-content.il-agreement .il-register .il-plan--intro {
-    display: -webkit-box;
-    display: -ms-flexbox;
+  @media (min-width: 1024px) {
     display: flex;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    justify-content: flex-start;
+    form.il-form {
+      flex: 2 1;
+    }
   }
-  .il-content.il-agreement .il-register .il-plan--intro form.il-form {
-    -webkit-box-flex: 2;
-        -ms-flex: 2 1;
-            flex: 2 1;
+  
+}
+.il-form--pay {
+  top: 1.5rem;
+  position: relative;
+  margin: auto;
+  p.il-hidden {
+    padding: 0.4rem 0;
+    text-align: center;
+    visibility: hidden;
+  }
+  .il-pay {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 450px;
+    height: 100px;
+    padding: 0.4rem;
+    background: #56535a;
+    visibility: hidden;
+    transition: all 450ms ease-in;
+    box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.8);
+    &.il-show {
+      visibility: visible;
+    }
+    .il-pay--data {
+      display: flex;
+
+      & > div {
+        flex: 1;
+      }
+    }
+    select {
+      width: 100%;
+      height: 36px;
+      display: block;
+      margin: 0 auto 1rem auto;
+      font-family: inherit;
+      font-size: 14px;
+      padding: 0.35rem 0.45rem;
+      border: 1px solid #64676d;
+      border-radius: 3px;
+    }
   }
 }
 
-.il-content.il-agreement .il-register .il-plan--intro .il-plan--description {
+ */
+}
+
+.il-content.il-agreement .il-register .il-plan--description {
   background: white;
   color: #524e4e;
   -webkit-box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
@@ -549,7 +597,7 @@ main .il-main section.il-section {
 }
 
 @media (min-width: 1024px) {
-  .il-content.il-agreement .il-register .il-plan--intro .il-plan--description {
+  .il-content.il-agreement .il-register .il-plan--description {
     margin: 0 0.3rem;
     -webkit-box-flex: 1;
         -ms-flex: 1;
@@ -557,17 +605,29 @@ main .il-main section.il-section {
   }
 }
 
-.il-content.il-agreement .il-register .il-plan--intro .il-plan--description ul {
-  display: block;
+.il-content.il-agreement .il-register .il-plan--description h4 {
+  text-align: center;
 }
 
-.il-content.il-agreement .il-register .il-plan--intro .il-plan--description ul li {
+.il-content.il-agreement .il-register .il-plan--description ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 2rem;
+}
+
+.il-content.il-agreement .il-register .il-plan--description ul li {
   display: block;
   width: 100%;
-  text-align: left;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
-.il-content.il-agreement .il-register .il-plan--intro .il-plan--description span.il-description--price {
+.il-content.il-agreement .il-register .il-plan--description span.il-description--price {
+  margin-top: 1rem;
   font-size: 1.4rem;
   text-align: center;
   display: block;
@@ -577,11 +637,51 @@ main .il-main section.il-section {
   margin-bottom: 1rem;
 }
 
-.il-content.il-agreement .il-register .il-plan--intro .il-plan--description p.il-description--text {
+.il-content.il-agreement .il-register .il-plan--description p.il-description--text {
   font-size: 0.8rem;
 }
 
-.il-content.il-agreement .il-register .il-credit-card--container {
+.il-content.il-agreement .il-register .il-register--pay {
+  margin-top: 2rem;
+}
+
+.il-content.il-agreement .il-register .il-register--pay .il-pay--choice {
+  background: #977474;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.il-content.il-agreement .il-register .il-register--pay .il-pay--choice > div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.il-content.il-agreement .il-register .il-register--pay .il-pay--choice > div label {
+  margin-right: 0.5rem;
+}
+
+.il-content.il-agreement .il-register .il-register--pay .il-pay--choice > div input[type='radio'] {
+  height: 16px;
+  width: 16px;
+}
+
+.il-content.il-agreement .il-register .il-customer {
+  display: none;
+}
+
+.il-content.il-agreement .il-register .il-customer.il-show {
+  display: block;
+}
+
+.il-content.il-agreement .il-register .il-credit-card {
+  display: none;
+}
+
+.il-content.il-agreement .il-register .il-credit-card.il-show {
   position: absolute;
   top: -20vh;
   left: 0;
@@ -590,16 +690,18 @@ main .il-main section.il-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  visibility: hidden;
   -webkit-transition: all 450ms ease-in;
   transition: all 450ms ease-in;
 }
 
-.il-content.il-agreement .il-register .il-credit-card--container.il-show {
-  visibility: visible;
+.il-content.il-agreement .il-register .il-credit-card .il-credit-card--container {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
-.il-content.il-agreement .il-register .il-credit-card--container .il-close--modal {
+.il-content.il-agreement .il-register .il-credit-card .il-credit-card--container .il-close--modal {
   position: relative;
   top: 26%;
   left: 50%;
@@ -616,31 +718,53 @@ main .il-main section.il-section {
   border-radius: 50%;
 }
 
-.il-content.il-agreement .il-register .il-credit-card--container .il-close--modal svg {
+.il-content.il-agreement .il-register .il-credit-card .il-credit-card--container .il-close--modal svg {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.il-content.il-agreement .il-register .il-credit-card--container .il-close--modal:hover {
+.il-content.il-agreement .il-register .il-credit-card .il-credit-card--container .il-close--modal:hover {
   font-size: 1.8rem;
 }
 
-.il-content.il-agreement .il-register .il-credit-card--container .il-close--modal:hover svg {
+.il-content.il-agreement .il-register .il-credit-card .il-credit-card--container .il-close--modal:hover svg {
   width: 1.8rem;
   height: 1.8rem;
 }
 
-.il-content.il-agreement .il-register .il-credit-card--container .il-credit-card {
+.il-content.il-agreement .il-register .il-credit-card .il-credit-card--container .il-credit-card--body {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 450px;
   padding: 15px;
   margin: auto;
   border-radius: 12px;
   color: #454232;
-  background: #9fa3a7;
+  background: #56535a;
   -webkit-box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.8);
           box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.8);
+}
+
+@media (min-width: 768px) {
+  .il-content.il-agreement .il-register .il-credit-card .il-credit-card--container .il-credit-card--body {
+    max-width: 100%;
+  }
+}
+
+.il-content.il-agreement .il-register .il-form--register {
+  background: white;
+}
+
+.il-content.il-agreement .il-register .il-form--register .il-register--name {
+  -webkit-box-flex: 3;
+      -ms-flex: 3 1;
+          flex: 3 1;
+}
+
+.il-content.il-agreement .il-register .il-form--register .il-register--repeats {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
 }
 
 .il-content.il-video {
@@ -978,6 +1102,66 @@ button.il-btn.il-btn--card:hover {
 @media (min-width: 768px) {
   .il-card--plans .il-card--item .il-card--price {
     font-size: 1.45rem;
+  }
+}
+
+.il-checkout--result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (min-width: 800px) {
+  .il-checkout--result {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+}
+
+.il-checkout--result .il-result--data {
+  background: #dfeedf;
+  color: #53666e;
+}
+
+.il-checkout--result .il-result--data:first-child {
+  margin-bottom: 0.3rem;
+}
+
+.il-checkout--result .il-result--data .il-data--inner span {
+  display: block;
+}
+
+.il-checkout--result .il-result--data .il-data--inner span em {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.il-checkout--result .il-result--data .il-data--inner p span {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+@media (min-width: 800px) {
+  .il-checkout--result .il-result--data:first-child {
+    -webkit-box-flex: 3;
+        -ms-flex: 3 1;
+            flex: 3 1;
+    background: #dfeedf;
+    padding: 0.5rem 0.3rem;
+  }
+  .il-checkout--result .il-result--data:last-child {
+    background: #bec0c0;
+    padding: 0.5rem 0.3rem;
+    margin-right: 0.35rem;
   }
 }
 

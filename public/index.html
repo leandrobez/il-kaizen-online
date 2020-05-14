@@ -46,22 +46,24 @@
       const key = 'card';
       const f = window.localStorage;
 
-      $gn.ready((checkout) => {
-        const callback = (error, response) => {
-          if (error) {
-            // Trata o erro ocorrido
-            console.error(error);
-          } else {
-            _token = response.data.payment_token;
-            _mask = response.data.card_mask;
-            f.setItem('cardConfig', JSON.stringify({ _token, _mask }));
-          }
-        };
-        //get card from localsttore
-        const card = JSON.parse(f.getItem(key));
-        //first store card localstore
-        checkout.getPaymentToken(card, callback);
-      });
+      (function () {
+        $gn.ready((checkout) => {
+          const callback = (error, response) => {
+            if (error) {
+              // Trata o erro ocorrido
+              console.error(error);
+            } else {
+              _token = response.data.payment_token;
+              _mask = response.data.card_mask;
+              f.setItem('cardConfig', JSON.stringify({ _token, _mask }));
+            }
+          };
+          //get card from localsttore
+          const card = JSON.parse(f.getItem(key));
+          //first store card localstore
+          checkout.getPaymentToken(card, callback);
+        });
+      })();
     </script>
   </body>
 </html>

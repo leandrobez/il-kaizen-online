@@ -3,10 +3,11 @@ import React, { createContext, Component } from 'react';
 /**services Gerencianet*/
 import GerencianetService from '../services/GerencianetService';
 import PayTokenGN from '../services/PayTokenGN';
-import { apiURL } from '../services/GerencianetService';
+import { apiURL, initCheckout } from '../services/GerencianetService';
 const moment = require('moment');
 
 export const GerencianetContext = createContext();
+
 class GerencianetContextProvider extends Component {
   state = {
     customer: {},
@@ -41,15 +42,17 @@ class GerencianetContextProvider extends Component {
     subscription: {},
     plan: {},
     pay: {},
+    alert: {
+      error: false,
+      message: {
+        type: null,
+        value: null,
+      },
+    },
   };
 
-  getPayToken = () => {
-    
-    PayTokenGN();
-  };
-
-  setRegister = (register, repeats) => {
-    this.setState({ register: register, repeats: repeats });
+  getPayToken = async () => {
+    return await PayTokenGN();
   };
 
   getPlan = (name) => {
@@ -57,25 +60,31 @@ class GerencianetContextProvider extends Component {
     return plan[0];
   };
 
-  register = () => {
+  register = (register, repeats) => {
     //first register client and then make proccess
     const endPointRegister = 'customer/register';
     try {
-      return GerencianetService.post(
-        apiURL + endPointRegister,
-        this.state.register
-      )
+      return GerencianetService.post(apiURL + endPointRegister, register)
         .then((res) => {
           if (!res.data.error) {
             this.setState({
               customer: res.data.customer,
+              repeats: repeats,
             });
           } else {
-            return {
-              error: true,
-              message: res.data.message,
-            };
+            if (res.data.customer) {
+              this.setState({
+                customer: res.data.customer,
+                repeats: repeats,
+              });
+            } else {
+              return {
+                error: true,
+                message: res.data.message,
+              };
+            }
           }
+          console.log(res.data);
           return res.data;
         })
         .then((value) => {
@@ -92,16 +101,11 @@ class GerencianetContextProvider extends Component {
     }
   };
 
-  createPlan = async (plan) => {
-    const currentPlan = this.getPlan(plan),
-      body = {
-        name: currentPlan.name,
-        repeats: this.state.repeats,
-        interval: 1,
-      },
-      endPointPlan = 'gerencianet/plan';
-
-    return await GerencianetService.post(apiURL + endPointPlan, body)
+  checkout = async (plan_name, typePay) => {
+    const payBody = this.getPayBody(typePay),
+      currentPlan = this.getPlan(plan_name),
+      { createPlan, createSubscription, createPay } = initCheckout();
+    return await createPlan(currentPlan)
       .then((res) => {
         if (res.status === 200) {
           if (!res.data.error) {
@@ -111,157 +115,131 @@ class GerencianetContextProvider extends Component {
             });
             return {
               error: false,
-              message: {},
             };
-          }
-        }
-      })
-      .catch((error) => {
-        return {
-          error: false,
-          message: {
-            type: 'warning',
-            value: error.message,
-          },
-        };
-      });
-  };
-
-  createSubscription = async () => {
-    const _currentPlan = this.getPlan(this.state.plan.name),
-      metadata = {
-        custom_id: this.state.customer._id,
-        notification_url:
-          process.env.REACT_APP_URL_BASE +
-          process.env.REACT_APP_CLIENT_PORT +
-          '/gerencianet/plan/notification',
-      },
-      params = {
-        id: this.state.plan.plan_id,
-      },
-      items = [
-        {
-          name: 'Inscrição no plano ' + this.state.plan.name,
-          amount: 1,
-          value: _currentPlan.price * 100,
-        },
-      ],
-      endPointSub = 'gerencianet/plan/subscription';
-
-    return await GerencianetService.post(apiURL + endPointSub, {
-      metadata,
-      params,
-      items,
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          if (!res.data.error) {
-            const newSub = res.data.data;
-            this.setState({
-              subscription: newSub,
-            });
+          } else {
             return {
-              error: false,
-              message: {},
+              error: true,
             };
           }
         }
       })
-      .catch((error) => {
-        return {
-          error: false,
-          message: {
-            type: 'warning',
-            value: error.message,
-          },
-        };
+      .then((status) => {
+        if (!status.error) {
+          return createSubscription(
+            this.state.plan.name,
+            this.state.plan.plan_id,
+            currentPlan,
+            this.state.customer._id
+          )
+            .then((res) => {
+              if (res.status === 200) {
+                if (!res.data.error) {
+                  const newSub = res.data.data;
+                  this.setState({
+                    subscription: newSub,
+                  });
+                  return {
+                    error: false,
+                  };
+                } else {
+                  return {
+                    error: true,
+                  };
+                }
+              }
+            })
+            .then((status) => {
+              if (!status.error) {
+                return createPay(
+                  payBody,
+                  this.state.subscription.subscription_id
+                ).then((res) => {
+                  /**
+                   * 
+                   data:
+                      data:
+                      barcode: "00000.00000 00000.000000 00000.000000 0 00000000000000"
+                      charge: {id: 1036769, status: "waiting", parcel: 1, total: 30000}
+                      expire_at: "2020-05-24"
+                      first_execution: "14/05/2020"
+                      link: "https://visualizacaosandbox.gerencianet.com.br/emissao/13195_13_CORLE9/A4XB-13195-755315-BOXI4"
+                      payment: "banking_billet"
+                      pdf: {charge: "https://download.gerencianet.com.br/13195_13_CORLE9/13195-755315-BOXI4.pdf?sandbox=true"}
+                      plan: {id: 6464, interval: 1, repeats: null}
+                      status: "active"
+                      subscription_id: 42405
+                      total: 30000
+                      error: false
+                   */
+                  if (res.status === 200) {
+                    if (!res.data.error) {
+                      const newPay = res.data.data;
+                      this.setState({
+                        pay: newPay,
+                      });
+                      return {
+                        error: false,
+                        data: res.data.data,
+                      };
+                    }
+                  }
+                });
+              }
+            });
+        }
       });
   };
 
-  createPay = async () => {
-    const endPointPay = 'gerencianet/plan/subscription/pay',
-      formPay = this.state.register.pay,
-      customer = {
-        name: this.state.customer.name,
-        email: this.state.customer.email,
-        cpf: this.state.customer.cpf,
-        birth: this.state.customer.birth,
-        phone_number: this.state.customer.phone_number,
-      },
-      payParams = {
-        id: this.state.subscription.subscription_id,
-      };
-
-    let payBody = {};
-
-    if (formPay === 'banking_billet') {
-      payBody = {
+  //verif form payment
+  getPayBody = (typePay) => {
+    if (typePay === 'banking_billet') {
+      return {
         payment: {
           banking_billet: {
             expire_at: moment().add(10, 'days').format('YYYY-MM-DD'),
-            customer: customer,
+            customer: {
+              name: this.state.customer.name,
+              email: this.state.customer.email,
+              cpf: this.state.customer.cpf,
+              birth: this.state.customer.birth,
+              phone_number: this.state.customer.phone_number,
+            },
           },
         },
       };
     } else {
-      const paymentToken = window.payLoad();
-      payBody = {
+      const paymentToken = JSON.parse(
+        window.localStorage.getItem('cardConfig')
+      );
+      return {
         payment: {
           credit_card: {
-            installments: 1,
-            payment_token: paymentToken,
+            payment_token: paymentToken._token,
             billing_address: this.state.customer.address,
-            customer: customer,
+            customer: {
+              name: this.state.customer.name,
+              email: this.state.customer.email,
+              cpf: this.state.customer.cpf,
+              birth: this.state.customer.birth,
+              phone_number: this.state.customer.phone_number,
+            },
           },
         },
       };
     }
-
-    return await GerencianetService.post(apiURL + endPointPay, {
-      payParams,
-      payBody,
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          if (!res.data.error) {
-            const newPay = res.data.data;
-            this.setState({
-              pay: newPay,
-            });
-            return {
-              error: false,
-              message: {
-                type: 'success',
-                value:
-                  'Sua inscrição foi realizada com sucesso. Verifique sua caixa de email para mais detalhes sobre o pagamento. Assim que tivermos a confirmação do mesmo o seu acesso as aulas estará liberado.',
-              },
-            };
-          }
-        }
-      })
-      .catch((error) => {
-        return {
-          error: false,
-          message: {
-            type: 'warning',
-            value: error.message,
-          },
-        };
-      });
   };
+
+  /*  */
 
   render() {
     return (
       <GerencianetContext.Provider
         value={{
           ...this.state,
-          setRegister: this.setRegister,
           register: this.register,
           getPlan: this.getPlan,
-          createPlan: this.createPlan,
-          createSubscription: this.createSubscription,
           getPayToken: this.getPayToken,
-          createPay: this.createPay,
+          checkout: this.checkout,
         }}
       >
         {this.props.children}

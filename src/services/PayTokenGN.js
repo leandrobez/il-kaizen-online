@@ -10,6 +10,7 @@ const getPayToken = () => {
 
   if (!document.getElementById(acountID)) {
     document.getElementsByTagName('head')[0].appendChild(s);
+    return true
   }
 };
 

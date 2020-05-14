@@ -11,13 +11,25 @@ export default function () {
               <img src={share} title="Compartilhe" alt="Compartilhe" />
             </span>
             <span>
-              <img src={instagram} title="Compartilhe" alt="Compartilhe" />
+              <a
+                href="https://www.instagram/pilateskaizen"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={instagram} title="Compartilhe" alt="Compartilhe" />
+              </a>
             </span>
           </div>
           <div className="il-by">
-            <span>
-              bys to -{' '}
-              <a href="#!" title="InternetLojas">
+            <span className="il-color--text__light">
+              by to -{' '}
+              <a
+                href="http://www.internetlojas.com"
+                className="il-color--text__green"
+                title="InternetLojas"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 internetLojas
               </a>
             </span>

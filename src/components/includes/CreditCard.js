@@ -8,19 +8,12 @@ export default class CreditCard extends Component {
       card: {
         brand: 'visa',
         number: '',
+        cvv: '',
         expiration_month: '',
         expiration_year: '',
-        cvv: '',
       },
     };
   }
-
-  getHasActived = () => {
-    let show = this.props.show;
-    return show
-      ? 'il-credit-card--container il-show'
-      : 'il-credit-card--container';
-  };
 
   checkField = () => {
     let fieldsError = [];
@@ -51,7 +44,6 @@ export default class CreditCard extends Component {
       this.setState({
         card: dataCard,
       });
-
       return false;
     }
   };
@@ -62,15 +54,8 @@ export default class CreditCard extends Component {
     if (check) {
       this.props.setAlert(check);
     } else {
-      this.close();
       this.props.setCard(this.state.card);
     }
-  };
-
-  close = () => {
-    let modal = document.querySelector('.il-credit-card--container.il-show');
-    modal.classList.remove('il-show');
-    this.props.close();
   };
 
   handledData = (e) => {
@@ -88,7 +73,7 @@ export default class CreditCard extends Component {
 
   render() {
     return (
-      <div className={this.getHasActived()}>
+      <div className="il-credit-card--container">
         <a
           href="#!"
           className="il-close--modal"
@@ -99,18 +84,17 @@ export default class CreditCard extends Component {
         >
           <FontAwesomeIcon icon={faTimesCircle} />
         </a>
-        <div className="il-credit-card">
+        <div className="il-credit-card--body">
           <h4 className="il-color--text__light il-center">
             Dados do seu cartão
           </h4>
-          <p>
-            Preencha os dados do seu cartão e na sequência preencha o cadastro.
-            Isso é importante para continuarmos.
+          <p className="il-color--text__light">
+            Preencha os dados do seu cartão.
           </p>
           <form className="il-form" onSubmit={this.setCard}>
             <div className="il-form--field il-flex">
               <div>
-                <label htmlFor="brand" className="il-text-color--light">
+                <label htmlFor="brand" className="il-color--text__light">
                   Bandeira <span>*</span>
                 </label>
                 <select
@@ -129,19 +113,26 @@ export default class CreditCard extends Component {
                 </select>
               </div>
               <div>
-                <label htmlFor="number">Número</label>
+                <label htmlFor="number" className="il-color--text__light">
+                  Número
+                </label>
                 <input
                   type="text"
                   name="number"
                   placeholder="Número de seu cartão"
-                  id="number"
+                  id="card_number"
                   onChange={this.handledData}
                 />
               </div>
             </div>
             <div className="il-form--field il-flex">
               <div>
-                <label htmlFor="expiration_month">Dt de Expiração</label>
+                <label
+                  htmlFor="expiration_month"
+                  className="il-color--text__light"
+                >
+                  Dt de Expiração
+                </label>
                 <input
                   type="text"
                   name="expiration_month"
@@ -151,7 +142,12 @@ export default class CreditCard extends Component {
                 />
               </div>
               <div>
-                <label htmlFor="expiration_year">Ano de Expiração</label>
+                <label
+                  htmlFor="expiration_year"
+                  className="il-color--text__light"
+                >
+                  Ano de Expiração
+                </label>
                 <input
                   type="text"
                   name="expiration_year"
@@ -161,7 +157,9 @@ export default class CreditCard extends Component {
                 />
               </div>
               <div>
-                <label htmlFor="cvv">CVV</label>
+                <label htmlFor="cvv" className="il-color--text__light">
+                  CVV
+                </label>
                 <input
                   type="text"
                   name="cvv"
