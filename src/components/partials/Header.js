@@ -11,7 +11,6 @@ class Header extends Component {
               <img src={logo} alt="logo" />
               <h1 className="il-brand--title">Kaizen Pilates Online</h1>
             </div>
-
             <ul className="il-menu">
               <li>
                 <Link to="/" className="il-link">

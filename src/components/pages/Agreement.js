@@ -23,15 +23,11 @@ class Agreement extends Component {
           <p className="il-description">
             Esses dados não serão divulgados e sua importância é apenas para o
             controle eficiente dos pagamentos.<br></br>No formulário abaixo
-            escolha como deseja fazer o pagamento e escolha o total de meses que
-            gostaria.
+            escolha inicialment como deseja fazer o pagamento.
           </p>
         </div>
         <GerencianetContextProvider>
-          <Register
-            plan={this.props.match.params.plan}
-            {...this.props}
-          />
+          <Register plan={this.props.match.params.plan} {...this.props} />
         </GerencianetContextProvider>
       </div>
     );

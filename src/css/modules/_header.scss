@@ -15,7 +15,7 @@ header.il-header {
     .il-brand {
       display: flex;
       margin: auto;
-      justify-content: space-around;
+      justify-content: center;
       @media screen and (min-width: 680px) {
         width: 100%;
         flex: 1;
@@ -26,22 +26,26 @@ header.il-header {
         max-width: 38px;
       }
       h1.il-brand--title {
-        color: #a4a7b1;
-        font-size: 0.85rem;
+        color: $color-brand;
+        font-size: 1.3rem;
         text-transform: uppercase;
         margin: 0;
         padding: 0;
         height: $heigthNoMobileHeader;
         line-height: $heigthNoMobileHeader;
         @media screen and (min-width: 680px) {
-          font-size: 0.75rem;
+          font-size: 1rem;
+        }
+        @media screen and (min-width: 768px) {
+          font-size: 1.1rem;
         }
       }
     }
-
     .il-menu {
       width: 100%;
+      padding: 0 0.4rem;
       @media screen and (min-width: 680px) {
+        padding: 0 0.25rem;
         flex: 2 3;
       }
       li {
@@ -49,6 +53,10 @@ header.il-header {
         a.il-link {
           border-bottom: 2px solid #b3a1cf;
           font-size: 0.85rem;
+          @media screen and (min-width: 768px) {
+            font-size: 1rem;
+            text-transform: uppercase;
+          }
           &:hover {
             color: $lightColor;
             font-weight: 700;

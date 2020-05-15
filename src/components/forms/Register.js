@@ -4,6 +4,9 @@ import { GerencianetContext } from '../../context/GerencianetContext';
 
 import Alert from '../includes/Alert';
 import Loading from '../includes/Loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyCheckAlt } from '@fortawesome/free-solid-svg-icons';
 
 //components
 import CustomerRegister from '../includes/CustomerRegister';
@@ -36,6 +39,8 @@ class Register extends Component {
       plan,
     });
   };
+
+  handledLoad = () => {};
 
   handledAlert = () => {
     return this.state.showAlert ? true : false;
@@ -162,6 +167,9 @@ class Register extends Component {
   };
 
   submitRegister = async (dataRegister, repeats) => {
+    this.setState({
+      showLoad: true,
+    });
     let msg = '';
     //register client
     const register = await this.context.register(dataRegister, repeats);
@@ -187,69 +195,72 @@ class Register extends Component {
       <div className="il-register">
         <Loading flag={this.state.showLoad} title="processando" />
         <Alert message={this.state.message} show={this.handledAlert()} />
-        <div className="il-plan--description">
-          <h4>O que você está contratando</h4>
-          <ul>
-            <li>
-              Plano: <strong>{this.props.plan}</strong>
-            </li>
-            <li>
-              Validade: <strong>{this.state.repeats}</strong> meses
-            </li>
-          </ul>
-          <span className="il-description--price">
-            R$ {this.state.plan.price + ',00'}
-          </span>
-          <p className="il-description--text">
-            {this.state.plan.description}
-            <br></br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            accusantium enim sed amet, magni recusandae ducimus, veniam id iusto
-            exercitationem modi a totam! Ea corporis dignissimos accusantium
-            aspernatur dolores. Nisi quam vel commodi corrupti rem? Saepe
-            tempora voluptate perferendis deleniti doloribus, corrupti cum
-            suscipit, dignissimos, soluta dolorum amet sed temporibus! Rerum
-            asperiores obcaecati cupiditate quia.
-          </p>
-        </div>
-        <div className="il-register--pay">
-          <h4>Como gostaria de Pagar?</h4>
-          <div className="il-pay--choice">
-            <div>
-              <label htmlFor="banking_billet">Boleto Bancário</label>
-              <input
-                type="radio"
-                name="pay"
-                id="banking_billet"
-                value="banking_billet"
-                onClick={(e) => this.handledPay(e)}
+        <div className="il-register--contents">
+          <div className="il-plan--description">
+            <h4>O que você está contratando</h4>
+            <ul>
+              <li>
+                Plano: <strong>{this.props.plan}</strong>
+              </li>
+              <li>
+                Validade: <strong>{this.state.repeats}</strong> meses
+              </li>
+            </ul>
+            <span className="il-description--price">
+              R$ {this.state.plan.price + ',00'}
+            </span>
+            <p className="il-description--text">
+              {this.state.plan.description}
+            </p>
+          </div>
+          <div className="il-pay--content">
+            <div className="il-register--pay">
+              <h4>Como gostaria de Pagar?</h4>
+              <div className="il-pay--choice">
+                <div>
+                  <label htmlFor="banking_billet">
+                    <FontAwesomeIcon icon={faMoneyCheckAlt} />
+                    Boleto Bancário
+                  </label>
+                  <input
+                    type="radio"
+                    name="pay"
+                    id="banking_billet"
+                    value="banking_billet"
+                    onClick={(e) => this.handledPay(e)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="credit_card">
+                    <FontAwesomeIcon icon={faCreditCard} />
+                    Cartão de Crédito
+                  </label>
+                  <input
+                    type="radio"
+                    name="pay"
+                    id="credit_card"
+                    value="credit_card"
+                    onClick={(e) => this.handledPay(e)}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={this.handledIntro()}>
+              <CustomerRegister
+                setAlert={this.setAlert}
+                typePay={this.state.register.pay}
+                submitRegister={this.submitRegister}
               />
             </div>
-            <div>
-              <label htmlFor="credit_card">Cartão de Crédito</label>
-              <input
-                type="radio"
-                name="pay"
-                id="credit_card"
-                value="credit_card"
-                onClick={(e) => this.handledPay(e)}
+            <div className={this.handledCreditCard()}>
+              <CreditCard
+                setAlert={this.setAlert}
+                closeModal={this.closeModal}
+                setCard={this.setCard}
+                name={this.state.register.name}
               />
             </div>
           </div>
-        </div>
-        <div className={this.handledIntro()}>
-          <CustomerRegister
-            setAlert={this.setAlert}
-            typePay={this.state.register.pay}
-            submitRegister={this.submitRegister}
-          />
-        </div>
-        <div className={this.handledCreditCard()}>
-          <CreditCard
-            setAlert={this.setAlert}
-            closeModal={this.closeModal}
-            setCard={this.setCard}
-          />
         </div>
       </div>
     );

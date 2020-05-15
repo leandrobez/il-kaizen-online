@@ -1,24 +1,35 @@
 .il-plan--description {
   background: white;
   color: $primaryColor;
-  box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
-  padding: 0 12px;
+  padding: 0 8x;
   @media (min-width: 1024px) {
+    padding: 0 12px;
     margin: 0 0.3rem;
+    box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
     flex: 1;
   }
   h4 {
     text-align: center;
+    font-size: 0.86rem;
+    margin: 0.45rem 0;
+    @media (min-width: 768px) {
+      width: inherit;
+    }
   }
   ul {
     display: flex;
     align-items: center;
-    height: 2rem;
+    @media (min-width: 1024px) {
+      height: 2rem;
+    }
     li {
       display: block;
       width: 100%;
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 0.79rem;
+      @media (min-width: 1024px) {
+        font-size: 1.1rem;
+      }
     }
   }
   span.il-description--price {
@@ -33,12 +44,17 @@
   }
   p.il-description--text {
     font-size: 0.8rem;
+    padding: 0 0.35rem;
   }
 }
 .il-register--pay {
   margin-top: 2rem;
+  padding: 0 0.4rem;
+  background: rgb(97, 94, 94);
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
   .il-pay--choice {
-    background: rgb(151, 116, 116);
     display: flex;
     & > div {
       flex: 1;
@@ -47,7 +63,9 @@
 
       label {
         margin-right: 0.5rem;
-        //height: 20px;
+        svg {
+          margin-right: 0.3rem;
+        }
       }
       input[type='radio'] {
         height: 16px;
@@ -79,68 +97,15 @@
 .il-form--register {
   background: white;
   .il-register--name {
-    flex: 3 1;
+    flex: 1 1;
+    @media (min-width: 540px) {
+      flex: 2 1;
+    }
+    @media (min-width: 800px) {
+      flex: 3 1;
+    }
   }
   .il-register--repeats {
     flex: 1 1;
   }
 }
-/* 
-.il-plan--intro {
-  display: block;
-  @media (min-width: 1024px) {
-    display: flex;
-    justify-content: flex-start;
-    form.il-form {
-      flex: 2 1;
-    }
-  }
-  
-}
-.il-form--pay {
-  top: 1.5rem;
-  position: relative;
-  margin: auto;
-  p.il-hidden {
-    padding: 0.4rem 0;
-    text-align: center;
-    visibility: hidden;
-  }
-  .il-pay {
-    position: absolute;
-    z-index: 4;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 450px;
-    height: 100px;
-    padding: 0.4rem;
-    background: #56535a;
-    visibility: hidden;
-    transition: all 450ms ease-in;
-    box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.8);
-    &.il-show {
-      visibility: visible;
-    }
-    .il-pay--data {
-      display: flex;
-
-      & > div {
-        flex: 1;
-      }
-    }
-    select {
-      width: 100%;
-      height: 36px;
-      display: block;
-      margin: 0 auto 1rem auto;
-      font-family: inherit;
-      font-size: 14px;
-      padding: 0.35rem 0.45rem;
-      border: 1px solid #64676d;
-      border-radius: 3px;
-    }
-  }
-}
-
- */

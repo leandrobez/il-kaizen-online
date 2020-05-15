@@ -11,12 +11,24 @@ $secondColor: #803636;
 $thirtyColor: #d6e738;
 $lightColor: #799bbb;
 $mediumColor: #eb9292;
+$color-brand: #e0a118;
 
 /**MODAL*/
-$backModal: #56535a;
+$backModal: rgb(97, 94, 94);
 
 /**texts colors*/
 $textColorDefault: #323232;
 
 /**links colors*/
+$linkDefault: #f1f3e6;
 $linkLight: #d2e96c;
+
+/**alerts */
+$alert-back-info: #0c54a7;
+$alert-color-info: #0a123f;
+$alert-back-success: #0ca73a;
+$alert-color-success: #bce01a;
+$alert-back-warning: #e66a17;
+$alert-color-warning: #ebece7;
+$alert-back-danger: #c92c17;
+$alert-color-danger: #dcee8f;
