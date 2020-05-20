@@ -7,6 +7,7 @@ class Checkout extends Component {
       flag: null,
     };
   }
+
   componentDidMount = () => {
     this.setState({ flag: this.props.match.params.flag });
   };
@@ -16,61 +17,58 @@ class Checkout extends Component {
       const key = 'checkout';
       const checkout = JSON.parse(window.localStorage.getItem(key));
       const message =
-        'Sua inscrição foi realizada com sucesso. Verifique sua caixa de email para mais detalhes sobre o pagamento. Assim que tivermos a confirmação do mesmo o seu acesso as aulas estará liberado.';
+        'Sua inscrição foi realizada com sucesso.\nVerifique sua caixa de email para mais detalhes sobre o pagamento.\nAssim que tivermos a confirmação do mesmo o seu acesso as aulas estará liberado.\nVocê receberá através email um link e instruções de como acessar a plataforma.';
       if (checkout.payment !== 'credit_card') {
         return (
           <div className="il-data--inner">
             <h4>Plano VIP</h4>
-            <p>{message}</p>
-            <p>
-              Código de barras - <span>{checkout.barcode}</span>
-            </p>
-            <p>
-              Vizualise seu boleto nesse{' '}
-              <a
-                href={checkout.link}
-                className="il-color--text__dark"
-                title="Veja o boleto"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {' '}
-                link
-              </a>{' '}
-              <span>
-                <em>{checkout.link}</em>
-              </span>
-            </p>
-            <p>
-              Ou baixe seu boleto no{' '}
-              <a
-                href={checkout.pdf.charge}
-                className="il-color--text__dark"
-                title="Veja o boleto"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                link
-              </a>{' '}
-              <span>
-                <em>{checkout.pdf.charge}</em>
-              </span>
-            </p>
+            <p className="il-description--text">{message}</p>
+            <ul className="il-result--billet">
+              <li>
+                <span>{checkout.barcode}</span>
+              </li>
+
+              <li>
+                <a
+                  href={checkout.link}
+                  className="il-color--text__dark"
+                  title="Veja o boleto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visualizar Boleto
+                </a>
+              </li>
+              <li></li>
+              <li>
+                <a
+                  href={checkout.pdf.charge}
+                  className="il-color--text__dark"
+                  title="Veja o boleto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Baixar Boleto
+                </a>
+              </li>
+            </ul>
           </div>
         );
       } else {
-        return (<div className="il-data--inner">
-        <h4>Plano VIP</h4>
-        <p>{message}</p>
-        
-        
-      </div>)
+        return (
+          <div className="il-data--inner">
+            <h4>Plano VIP</h4>
+            <p className="il-description--text">{message}</p>
+          </div>
+        );
       }
     } else {
       return (
-        <p>
-          'Por algum motivo não foi possível processar suas requisições. Por
-          favor entrar em contato com o administrador.'
+        <p className="il-description--text">
+          <em>
+            Por algum motivo não foi possível processar suas requisições.
+            <br></br>Por favor entrar em contato com o administrador.
+          </em>
         </p>
       );
     }

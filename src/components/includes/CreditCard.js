@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+
+/* components */
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
-//import 'react-credit-cards/lib/styles.scss';
 
+/* icons */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,7 +13,7 @@ export default class CreditCard extends Component {
     super(props);
     this.state = {
       focus: '',
-      name: '',
+      name: 'Leandro Bezerra',
       card: {
         brand: 'visa',
         number: '',
@@ -21,6 +23,41 @@ export default class CreditCard extends Component {
       },
     };
   }
+
+  componentDidMount = () => {
+    this.setState({
+      name: this.props.name,
+    });
+  };
+
+  handleInputFocus = (e) => {
+    if (e.target.name === 'cvv') {
+      this.setState({ focus: 'cvc' });
+    } else {
+      if (e.target.name === 'name') {
+        this.setState({ focus: 'name' });
+      } else this.setState({ focus: e.target.name });
+    }
+  };
+
+  handledData = (e) => {
+    let dataCard = this.state.card;
+    let Card = dataCard;
+    for (let props in dataCard) {
+      if (props === e.target.name) {
+        Card[e.target.name] = e.target.value;
+        this.setState({
+          card: Card,
+        });
+      } else {
+        if (e.target.name === 'name')
+          this.setState({
+            name: e.target.value,
+          });
+      }
+    }
+    /* */
+  };
 
   checkField = () => {
     let fieldsError = [];
@@ -55,38 +92,15 @@ export default class CreditCard extends Component {
     }
   };
 
-  setCard = (e) => {
+  cardFormSubmit = (e) => {
     e.preventDefault();
-    let check = this.checkField();
+    const check = this.checkField();
     if (check) {
       this.props.setAlert(check);
+      return false;
     } else {
-      this.props.setCard(this.state.card);
-    }
-  };
-
-  handleInputFocus = (e) => {
-    if (e.target.name === 'cvv') {
-      this.setState({ focus: 'cvc' });
-    } else {
-      this.setState({ focus: e.target.name });
-    }
-  };
-
-  handledData = (e) => {
-    let dataCard = this.state.card;
-    let Card = dataCard;
-    for (let props in dataCard) {
-      if (props === e.target.name) {
-        Card[e.target.name] = e.target.value;
-      } else {
-        this.setState({
-          name: e.target.value,
-        });
-      }
-      this.setState({
-        card: Card,
-      });
+      const dataCard = this.state.card;
+      this.props.submitCard(dataCard);
     }
   };
 
@@ -120,12 +134,9 @@ export default class CreditCard extends Component {
           </div>
           <div className="il-card--form">
             <h4 className="il-color--text__light il-center">
-              Dados do seu cartão
+              Preencha os dados do seu cartão
             </h4>
-            <p className="il-color--text__light">
-              Preencha os dados do seu cartão.
-            </p>
-            <form className="il-form" onSubmit={this.setCard}>
+            <form className="il-form" onSubmit={this.cardFormSubmit}>
               <div className="il-form--field il-flex">
                 <div>
                   <label htmlFor="brand" className="il-color--text__light">
@@ -169,6 +180,7 @@ export default class CreditCard extends Component {
                   type="text"
                   name="name"
                   id="card_name"
+                  defaultValue={this.props.name}
                   placeholder="Seu nome"
                   onChange={this.handledData}
                   onFocus={this.handleInputFocus}
@@ -182,15 +194,27 @@ export default class CreditCard extends Component {
                   >
                     Mês
                   </label>
-                  <input
+                  <select
                     type="text"
                     name="expiration_month"
                     id="expiration_month"
-                    placeholder="mês no formato XX"
                     onChange={this.handledData}
                     onFocus={this.handleInputFocus}
-                    maxLength="2"
-                  />
+                  >
+                    <option value="0">Escolha o mês</option>
+                    <option value="01">1</option>
+                    <option value="02">2</option>
+                    <option value="03">3</option>
+                    <option value="04">4</option>
+                    <option value="05">5</option>
+                    <option value="06">6</option>
+                    <option value="07">7</option>
+                    <option value="08">8</option>
+                    <option value="09">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                 </div>
                 <div>
                   <label
@@ -199,15 +223,21 @@ export default class CreditCard extends Component {
                   >
                     Ano
                   </label>
-                  <input
-                    type="text"
+
+                  <select
                     name="expiration_year"
                     id="expiration_year"
-                    placeholder="ano no formato XXXX"
                     onChange={this.handledData}
                     onFocus={this.handleInputFocus}
-                    maxLength="4"
-                  />
+                  >
+                    <option value="0">Escolha o ano</option>
+                    <option value="20">2020</option>
+                    <option value="21">2021</option>
+                    <option value="22">2022</option>
+                    <option value="23">2023</option>
+                    <option value="24">2024</option>
+                    <option value="25">2025</option>
+                  </select>
                 </div>
                 <div>
                   <label htmlFor="cvv" className="il-color--text__light">
@@ -218,6 +248,7 @@ export default class CreditCard extends Component {
                     name="cvv"
                     id="cvv"
                     placeholder="cvv"
+                    maxlenght="3"
                     onChange={this.handledData}
                     onFocus={this.handleInputFocus}
                   />

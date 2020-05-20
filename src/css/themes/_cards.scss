@@ -5,10 +5,10 @@
   justify-content: center;
   justify-items: center;
   align-items: center;
-
+  height: 100%;
   @media (min-width: 600px) {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 170px));
+    grid-template-columns: repeat(auto-fit, minmax(90px, 175px));
     grid-gap: 0 0.25rem;
   }
   @media (min-width: 768px) {
@@ -26,18 +26,16 @@
     background: #342458;
     position: relative;
     height: 210px;
-    @media (max-width: 599px) {
-      width: 200px;
-    }
     padding: 15px;
-    @media (min-width: 600px) {
-      height: 220px;
-      padding: 15px;
-    }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     justify-items: center;
+    @media (min-width: 600px) {
+      height: 220px;
+      padding: 10px;
+      max-width: 170px;
+    }
     span {
       display: block;
       text-align: center;
@@ -52,7 +50,10 @@
         font-size: 1.15rem;
       }
       @media (min-width: 768px) {
-        font-size: 1.45rem;
+        font-size: 1.3rem;
+      }
+      @media (min-width: 1024px) {
+        font-size: 1.4rem;
       }
     }
   }

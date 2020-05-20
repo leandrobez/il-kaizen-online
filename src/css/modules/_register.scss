@@ -1,111 +1,124 @@
-.il-plan--description {
-  background: white;
-  color: $primaryColor;
-  padding: 0 8x;
-  @media (min-width: 1024px) {
-    padding: 0 12px;
-    margin: 0 0.3rem;
-    box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
-    flex: 1;
-  }
-  h4 {
-    text-align: center;
-    font-size: 0.86rem;
-    margin: 0.45rem 0;
+.il-register {
+  position: relative;
+  height: 100%;
+  .il-register--contents {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     @media (min-width: 768px) {
-      width: inherit;
+      flex-direction: row;
     }
-  }
-  ul {
-    display: flex;
-    align-items: center;
-    @media (min-width: 1024px) {
-      height: 2rem;
-    }
-    li {
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-size: 0.79rem;
-      @media (min-width: 1024px) {
-        font-size: 1.1rem;
+    .il-contents--plan__description {
+      background: white;
+      color: $primaryColor;
+      padding: 0 8px;
+      @media (min-width: 768px) {
+        flex: 1 1;
+        background: rgb(235, 231, 231);
       }
-    }
-  }
-  span.il-description--price {
-    margin-top: 1rem;
-    font-size: 1.4rem;
-    text-align: center;
-    display: block;
-    background: $primaryColor;
-    color: white;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-  p.il-description--text {
-    font-size: 0.8rem;
-    padding: 0 0.35rem;
-  }
-}
-.il-register--pay {
-  margin-top: 2rem;
-  padding: 0 0.4rem;
-  background: rgb(97, 94, 94);
-  @media (min-width: 768px) {
-    margin-top: 0;
-  }
-  .il-pay--choice {
-    display: flex;
-    & > div {
-      flex: 1;
-      padding: 1rem 0;
-      text-align: center;
-
-      label {
-        margin-right: 0.5rem;
-        svg {
-          margin-right: 0.3rem;
+      @media (min-width: 1024px) {
+        padding: 0 12px;
+        margin: 0 0.3rem;
+        box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
+        flex: 1;
+      }
+      h4 {
+        text-align: center;
+        font-size: 0.86rem;
+        margin: 0.45rem 0;
+        @media (min-width: 768px) {
+          width: inherit;
         }
       }
-      input[type='radio'] {
-        height: 16px;
-        width: 16px;
+      ul {
+        display: flex;
+        align-items: center;
+        @media (min-width: 1024px) {
+          height: 2rem;
+        }
+        li {
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+      }
+      span.il-description--price {
+        margin-top: 1rem;
+        font-size: 1.4rem;
+        text-align: center;
+        display: block;
+        background: $primaryColor;
+        color: white;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      p.il-description--text {
+        font-size: 0.8rem;
+        padding: 0 0.35rem;
       }
     }
-  }
-}
-.il-customer {
-  display: none;
-  &.il-show {
-    display: block;
-  }
-}
-.il-credit-card {
-  display: none;
-  &.il-show {
-    position: absolute;
-    top: -20vh;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    //visibility: hidden;
-    transition: all 450ms ease-in;
-  }
-  @import '../themes/credit-card';
-}
-.il-form--register {
-  background: white;
-  .il-register--name {
-    flex: 1 1;
-    @media (min-width: 540px) {
-      flex: 2 1;
+    .il-contents--pay {
+      background: white;
+      color: $primaryColor;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      @media (min-width: 768px) {
+        flex: 2 1;
+      }
+      .il-pay--register {
+        //margin-top: 2rem;
+        padding: 0.4rem;
+        background: #617886;
+        h4 {
+          color: white;
+          text-align: center;
+        }
+        @media (min-width: 768px) {
+          margin-top: 0;
+        }
+        .il-choice {
+          display: flex;
+          & > div {
+            flex: 1;
+            padding: 1rem 0;
+            text-align: center;
+            label {
+              margin-right: 0.5rem;
+              color: white;
+              svg {
+                margin-right: 0.3rem;
+              }
+            }
+            input[type='radio'] {
+              height: 16px;
+              width: 16px;
+            }
+          }
+        }
+      }
+      .il-customer {
+        display: none;
+        &.il-show {
+          display: block;
+        }
+        .il-customer--register {
+          background: white;
+          .il-customer--register__name {
+            flex: 1 1;
+            @media (min-width: 540px) {
+              flex: 2 1;
+            }
+            @media (min-width: 800px) {
+              flex: 3 1;
+            }
+          }
+          .il-customer--register__repeats {
+            flex: 1 1;
+          }
+        }
+      }
+      @import '../themes/credit-card';
     }
-    @media (min-width: 800px) {
-      flex: 3 1;
-    }
-  }
-  .il-register--repeats {
-    flex: 1 1;
   }
 }

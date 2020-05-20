@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
+
+/**icons  */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandsHelping } from '@fortawesome/free-solid-svg-icons';
+
 class Plans extends Component {
   render() {
     const planList = [
@@ -16,7 +19,6 @@ class Plans extends Component {
         <div className="il-content--text">
           <h1 className="il-big--title">Escolha um plano</h1>
           <h3 className="il-subtitle">Pacotes de 1 a 3 vezes por semana</h3>
-
           <div className="il-card--plans">
             {planList.map((plan) => (
               <div className="il-card--item" key={'plan_' + plan.id}>

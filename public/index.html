@@ -45,7 +45,8 @@
       let _mask = null;
       const key = 'card';
       const f = window.localStorage;
-
+      //get card from localsttore
+      const card = JSON.parse(f.getItem(key));
       (function () {
         $gn.ready((checkout) => {
           const callback = (error, response) => {
@@ -58,8 +59,7 @@
               f.setItem('cardConfig', JSON.stringify({ _token, _mask }));
             }
           };
-          //get card from localsttore
-          const card = JSON.parse(f.getItem(key));
+
           //first store card localstore
           checkout.getPaymentToken(card, callback);
         });

@@ -19,6 +19,9 @@ form.il-form {
     border: 1px solid #64676d;
     border-radius: 3px;
   }
+  input[type='text'].-internal-autofill-selected {
+    background-color: #dadce0 !important;
+  }
   textarea {
     height: auto;
   }

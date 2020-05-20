@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+/* components */
 import Alert from '../includes/Alert';
 import Loanding from '../includes/Loading';
+
+/* icons */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 class Contact extends Component {
   constructor(props) {
@@ -204,8 +207,8 @@ class Contact extends Component {
             </div>
             <div className="il-buttons">
               <button className="il-btn il-btn--submit">
-              <FontAwesomeIcon icon={faThumbsUp} />
-              Enviar
+                <FontAwesomeIcon icon={faThumbsUp} />
+                Enviar
               </button>
             </div>
           </form>

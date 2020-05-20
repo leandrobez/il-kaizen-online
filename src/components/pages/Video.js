@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import movie from '../../assets/video/aulasonline.mp4';
-export default class Video extends Component {
+
+class Video extends Component {
   render() {
     return (
       <div className="il-content il-video">
@@ -19,3 +20,5 @@ export default class Video extends Component {
     );
   }
 }
+
+export default Video;

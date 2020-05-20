@@ -22,7 +22,7 @@ export default function () {
           </div>
           <div className="il-by">
             <span className="il-color--text__light">
-              by to -{' '}
+              developed by -{' '}
               <a
                 href="http://www.internetlojas.com"
                 className="il-color--text__green"

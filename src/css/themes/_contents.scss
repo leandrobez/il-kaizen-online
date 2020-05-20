@@ -17,6 +17,7 @@
       padding: 0 40px;
     }
   }
+
   &.il-agreement .il-content--text,
   &.il-video .il-content--text {
     padding: 0 10px;
@@ -30,23 +31,11 @@
   &.il-content--plans {
     height: 100%;
   }
-  &.il-agreement .il-register {
-    position: relative;
-    .il-register--contents {
-      display: flex;
-      flex-direction: column;
-      @media (min-width: 768px) {
-        flex-direction: row;
-        .il-plan--description {
-          flex: 1 1;
-          background: #a3aaaa;
-        }
-        .il-pay--content {
-          flex: 2 1;
-        }
-      }
+  &.il-agreement {
+    height: 100%;
+    h1 span {
+      text-transform: uppercase;
     }
-    @import '../modules/register';
   }
   &.il-video {
     top: 0;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+/* icons */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,16 +10,16 @@ class CustomerRegister extends Component {
     this.state = {
       register: {
         repeats: 3,
-        name: '',
-        email: '',
-        cpf: '',
-        birth: '',
+        name: 'Leandro Bezerra',
+        email: 'leanbezerra@terra.com.br',
+        cpf: '70334641772',
+        birth: '1961-06-26',
         phone_number: '',
         pay: '',
         address: {
           street: '',
-          number: '',
-          complement: '',
+          number: '1248',
+          complement: 'Casa 5',
           neighborhood: '',
           zipcode: '',
           city: '',
@@ -135,181 +136,184 @@ class CustomerRegister extends Component {
 
   render() {
     return (
-      <div className="il-form--pay">
+      <div className="il-customer--register">
         {/* //form to pay */}
-        <div className="il-form--register">
-          <form className="il-form" onSubmit={this.formSubmit}>
-            <div className="il-form--field il-flex">
-              <div className="il-register--name">
-                <label className="il-color--text__dark" htmlFor="name">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div className="il-register--repeats">
-                <label htmlFor="repeats" className="il-text-color--light">
-                  Validade do Plano
-                </label>
-                <select
-                  id="repeats"
-                  className="il-select"
-                  name="repeats"
-                  onChange={this.handledData}
-                >
-                  <option value="3" defaultValue>
-                    3 meses
-                  </option>
-                  <option value="4">4 meses</option>
-                  <option value="6">6 meses</option>
-                </select>
-              </div>
+        <form className="il-form" onSubmit={this.formSubmit}>
+          <div className="il-form--field il-flex">
+            <div className="il-customer--register__name">
+              <label className="il-color--text__dark" htmlFor="name">
+                Nome
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                defaultValue="Leandro Bezerra"
+                onChange={this.handledData}
+              />
             </div>
-            <div className="il-form--field il-flex">
-              <div>
-                <label className="il-color--text__dark" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-color--text__dark" htmlFor="cpf">
-                  CPF
-                </label>
-                <input
-                  type="text"
-                  name="cpf"
-                  id="cpf"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-color--text__dark" htmlFor="birth">
-                  Nasc
-                </label>
-                <input
-                  type="date"
-                  name="birth"
-                  id="birth"
-                  onChange={this.handledData}
-                />
-              </div>
+            <div className="il-customer--register__repeats">
+              <label htmlFor="repeats" className="il-color--text__dark">
+                Validade
+              </label>
+              <select
+                id="repeats"
+                className="il-select"
+                name="repeats"
+                onChange={this.handledData}
+              >
+                <option value="3" defaultValue>
+                  3 meses
+                </option>
+                <option value="4">4 meses</option>
+                <option value="6">6 meses</option>
+              </select>
             </div>
-            <div className="il-form--field  il-flex">
-              <div>
-                <label className="il-color--text__dark" htmlFor="zipcode">
-                  CEP
-                </label>
-                <input
-                  type="text"
-                  name="zipcode"
-                  id="zipcode"
-                  onChange={this.handledData}
-                  onBlur={(e) => {
-                    this.getAddress(e);
-                  }}
-                />
-              </div>
-              <div>
-                <label className="il-color--text__dark" htmlFor="city">
-                  Cidade
-                </label>
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-color--text__dark" htmlFor="street">
-                  Rua/Av
-                </label>
-                <input
-                  type="text"
-                  name="street"
-                  id="street"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-color--text__dark" htmlFor="number">
-                  Nr
-                </label>
-                <input
-                  type="text"
-                  name="number"
-                  id="number"
-                  onChange={this.handledData}
-                />
-              </div>
+          </div>
+          <div className="il-form--field il-flex">
+            <div>
+              <label className="il-color--text__dark" htmlFor="email">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                onChange={this.handledData}
+              />
             </div>
-            <div className="il-form--field il-flex">
-              <div>
-                <label className="il-color--text__dark" htmlFor="complement">
-                  Complemento
-                </label>
-                <input
-                  type="text"
-                  name="complement"
-                  id="complement"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-color--text__dark" htmlFor="neighborhood">
-                  Bairro
-                </label>
-                <input
-                  type="text"
-                  name="neighborhood"
-                  id="neighborhood"
-                  onChange={this.handledData}
-                />
-              </div>
-              <div>
-                <label className="il-color--text__dark" htmlFor="state">
-                  Estado
-                </label>
-                <input
-                  type="text"
-                  name="state"
-                  id="state"
-                  onChange={this.handledData}
-                />
-              </div>
+            <div>
+              <label className="il-color--text__dark" htmlFor="cpf">
+                CPF
+              </label>
+              <input
+                type="text"
+                name="cpf"
+                id="cpf"
+                defaultValue="70334641772"
+                onChange={this.handledData}
+              />
             </div>
-            <div className="il-form--field il-flex">
-              <div>
-                <label className="il-color--text__dark" htmlFor="phone_number">
-                  Fone
-                </label>
-                <input
-                  type="phone"
-                  name="phone_number"
-                  id="phone_number"
-                  placeholder="use ddd no formato XXXXXXXXXX"
-                  onChange={this.handledData}
-                />
-              </div>
+            <div>
+              <label className="il-color--text__dark" htmlFor="birth">
+                Nasc
+              </label>
+              <input
+                type="date"
+                name="birth"
+                id="birth"
+                defaultValue="1961-06-26"
+                onChange={this.handledData}
+              />
             </div>
-            <div className="il-buttons">
-              <button className="il-btn il-btn--submit">
-                <FontAwesomeIcon icon={faThumbsUp} />
-                Assinar plano
-              </button>
+          </div>
+          <div className="il-form--field  il-flex">
+            <div>
+              <label className="il-color--text__dark" htmlFor="zipcode">
+                CEP
+              </label>
+              <input
+                type="text"
+                name="zipcode"
+                id="zipcode"
+                onChange={this.handledData}
+                onBlur={(e) => {
+                  this.getAddress(e);
+                }}
+              />
             </div>
-          </form>
-        </div>
+            <div>
+              <label className="il-color--text__dark" htmlFor="city">
+                Cidade
+              </label>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                onChange={this.handledData}
+              />
+            </div>
+            <div>
+              <label className="il-color--text__dark" htmlFor="street">
+                Rua/Av
+              </label>
+              <input
+                type="text"
+                name="street"
+                id="street"
+                onChange={this.handledData}
+              />
+            </div>
+            <div>
+              <label className="il-color--text__dark" htmlFor="number">
+                Nr
+              </label>
+              <input
+                type="text"
+                name="number"
+                id="number"
+                defaultValue="1248"
+                onChange={this.handledData}
+              />
+            </div>
+          </div>
+          <div className="il-form--field il-flex">
+            <div>
+              <label className="il-color--text__dark" htmlFor="complement">
+                Complemento
+              </label>
+              <input
+                type="text"
+                name="complement"
+                id="complement"
+                defaultValue="Casa 5"
+                onChange={this.handledData}
+              />
+            </div>
+            <div>
+              <label className="il-color--text__dark" htmlFor="neighborhood">
+                Bairro
+              </label>
+              <input
+                type="text"
+                name="neighborhood"
+                id="neighborhood"
+                onChange={this.handledData}
+              />
+            </div>
+            <div>
+              <label className="il-color--text__dark" htmlFor="state">
+                Estado
+              </label>
+              <input
+                type="text"
+                name="state"
+                id="state"
+                onChange={this.handledData}
+              />
+            </div>
+          </div>
+          <div className="il-form--field il-flex">
+            <div>
+              <label className="il-color--text__dark" htmlFor="phone_number">
+                Fone
+              </label>
+              <input
+                type="phone"
+                name="phone_number"
+                id="phone_number"
+                placeholder="use ddd no formato XXXXXXXXXX"
+                onChange={this.handledData}
+              />
+            </div>
+          </div>
+          <div className="il-buttons">
+            <button className="il-btn il-btn--submit">
+              <FontAwesomeIcon icon={faThumbsUp} />
+              Assinar plano
+            </button>
+          </div>
+        </form>
       </div>
     );
   }

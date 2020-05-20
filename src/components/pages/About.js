@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+/* icons */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSign } from '@fortawesome/free-solid-svg-icons';
 import { faVideo } from '@fortawesome/free-solid-svg-icons';
+
 class About extends Component {
   render() {
     return (
@@ -10,11 +13,11 @@ class About extends Component {
         <div className="il-content--text">
           <h1 className="il-big--title">O quê você recebe?</h1>
           <h3 className="il-subtitle">
-            Uma tutora online que te conduz nas aulas
+            Aulas online conduzidas por uma instrutora especializada.
           </h3>
           <p>
-            Com mais de 30 de experiência como educadora física e mais de 20
-            anos como instrutora de pilates formada pela
+            Com mais de 30 anos de experiência como educadora física e mais de
+            20 anos como instrutora de pilates formada pela{' '}
             <a
               href="https://physiopilates.com/a-physio-pilates/"
               target="_blank"

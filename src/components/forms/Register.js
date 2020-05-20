@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 
 import { GerencianetContext } from '../../context/GerencianetContext';
 
+/**Alerts and loader */
 import Alert from '../includes/Alert';
 import Loading from '../includes/Loading';
+
+/**icons */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyCheckAlt } from '@fortawesome/free-solid-svg-icons';
@@ -19,9 +22,10 @@ class Register extends Component {
     this.state = {
       register: {},
       plan: {},
-      card: {},
       repeats: 3,
       pay: null,
+      payment_token: null,
+      mask: null,
       message: {
         type: null,
         value: null,
@@ -40,8 +44,6 @@ class Register extends Component {
     });
   };
 
-  handledLoad = () => {};
-
   handledAlert = () => {
     return this.state.showAlert ? true : false;
   };
@@ -54,7 +56,7 @@ class Register extends Component {
     });
   };
 
-  handledIntro = () => {
+  handledShowRegister = () => {
     if (this.state.showRegister) {
       return 'il-customer il-show';
     } else return 'il-customer';
@@ -91,7 +93,7 @@ class Register extends Component {
     });
   };
 
-  setCard = (card) => {
+  cardForTest = (card) => {
     const cardTemplate = {
       brand: 'visa', // bandeira do cartão
       number: '4012001038443335', // número do cartão
@@ -99,6 +101,7 @@ class Register extends Component {
       expiration_month: '05', // mês de vencimento
       expiration_year: '2021', // ano de vencimento
     };
+
     if (card.brand !== cardTemplate.brand) {
       card.brand = cardTemplate.brand;
     }
@@ -114,51 +117,51 @@ class Register extends Component {
     if (card.expiration_year !== cardTemplate.expiration_year) {
       card.expiration_year = cardTemplate.expiration_year;
     }
-    window.localStorage.removeItem('cardConfig');
-    window.localStorage.removeItem('card');
-    this.setState({
-      card: card,
-    });
-    //first store card localstore
-    const key = 'card';
-    const f = window.localStorage;
-    f.setItem(key, JSON.stringify(card));
 
-    //action context
-    if (this.context.getPayToken()) {
-      /*wait 6s to get payload e reset localstore */
-      setTimeout(() => {
-        //get payment_token and card_mask
-        let cardConfig = JSON.parse(window.localStorage.getItem('cardConfig'));
-        this.setState(
-          {
-            payment_token: cardConfig._token,
-            mask: cardConfig._mask,
-          },
-          (cb) => {
-            f.removeItem(key);
-            //execute pay process
-            this.initCheckout('credit_card');
-          }
-        );
-      }, 6000);
-    }
+    return card;
   };
 
-  initCheckout = async (type) => {
-    const checkout = this.context.checkout(this.props.plan, type);
-    checkout.then((res) => {
-      let path = '';
-      if (!res.error) {
-        path = '/checkout/success';
-        this.setLocalStorage(res.data);
-      } else {
-        path = '/checkout/fail';
-      }
-      setTimeout(() => {
-        window.location = path;
-      }, 5000);
+  submitCard = (card) => {
+    this.setState({
+      showLoad: true,
+      showCreditCard: false,
     });
+    //for production uses fake credit_card
+    let cardTest = this.cardForTest(card);
+
+    //first store card localstore
+    const key = 'cardConfig';
+    const f = window.localStorage;
+    f.removeItem(key);
+    f.removeItem('card');
+
+    //remove last card
+    f.setItem('card', JSON.stringify(cardTest));
+    const scriptLoad = this.context.payToken();
+
+    scriptLoad.onload = () => {
+      setTimeout(() => {
+        const cardConfig = JSON.parse(f.getItem(key));
+        if (cardConfig) {
+          this.setState(
+            {
+              payment_token: cardConfig._token,
+              mask: cardConfig._mask,
+            },
+            (cb) => {
+              //execute pay process
+              this.initCheckout('credit_card');
+            }
+          );
+        } else {
+          this.setAlert({
+            type: 'warning',
+            value:
+              'Não foi possível fazer a sua requisição.|nPor favor tente mais tarde',
+          });
+        }
+      }, 6000);
+    };
   };
 
   setLocalStorage = (data) => {
@@ -173,12 +176,14 @@ class Register extends Component {
     let msg = '';
     //register client
     const register = await this.context.register(dataRegister, repeats);
+
     if (register.customer) {
       if (dataRegister.pay === 'credit_card') {
         this.setState({
           pay: dataRegister.pay,
           showCreditCard: true,
           showRegister: false,
+          showLoad: false,
         });
       } else {
         //execute pay process
@@ -190,13 +195,33 @@ class Register extends Component {
     }
   };
 
+  initCheckout = async (type) => {
+    const checkout = await this.context.createCheckout(this.props.plan, type);
+    console.log(checkout);
+    //checkout.then((res) => {
+    let path = '';
+    if (!checkout.error) {
+      path = '/checkout/success';
+      this.setLocalStorage(checkout.data);
+    } else {
+      path = '/checkout/fail';
+    }
+    setTimeout(() => {
+      this.setState({
+        showLoad: false,
+      });
+      window.location = path;
+    }, 2000);
+    //});
+  };
+
   render() {
     return (
       <div className="il-register">
         <Loading flag={this.state.showLoad} title="processando" />
         <Alert message={this.state.message} show={this.handledAlert()} />
         <div className="il-register--contents">
-          <div className="il-plan--description">
+          <div className="il-contents--plan__description">
             <h4>O que você está contratando</h4>
             <ul>
               <li>
@@ -213,10 +238,10 @@ class Register extends Component {
               {this.state.plan.description}
             </p>
           </div>
-          <div className="il-pay--content">
-            <div className="il-register--pay">
+          <div className="il-contents--pay">
+            <div className="il-pay--register">
               <h4>Como gostaria de Pagar?</h4>
-              <div className="il-pay--choice">
+              <div className="il-choice">
                 <div>
                   <label htmlFor="banking_billet">
                     <FontAwesomeIcon icon={faMoneyCheckAlt} />
@@ -245,7 +270,7 @@ class Register extends Component {
                 </div>
               </div>
             </div>
-            <div className={this.handledIntro()}>
+            <div className={this.handledShowRegister()}>
               <CustomerRegister
                 setAlert={this.setAlert}
                 typePay={this.state.register.pay}
@@ -256,8 +281,8 @@ class Register extends Component {
               <CreditCard
                 setAlert={this.setAlert}
                 closeModal={this.closeModal}
-                setCard={this.setCard}
-                name={this.state.register.name}
+                submitCard={this.submitCard}
+                name=""
               />
             </div>
           </div>

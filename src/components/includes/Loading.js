@@ -2,7 +2,7 @@ import React from 'react';
 
 const handledLoad = (flag) => {
   let currentClass = flag ? 'il-load il-show' : 'il-load';
-    return currentClass;
+  return currentClass;
 };
 export default function Loanding(props) {
   return (

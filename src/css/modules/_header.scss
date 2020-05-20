@@ -34,10 +34,10 @@ header.il-header {
         height: $heigthNoMobileHeader;
         line-height: $heigthNoMobileHeader;
         @media screen and (min-width: 680px) {
-          font-size: 1rem;
+          font-size: 0.8rem;
         }
-        @media screen and (min-width: 768px) {
-          font-size: 1.1rem;
+        @media screen and (min-width: 800px) {
+          font-size: 1rem;
         }
       }
     }
@@ -51,15 +51,17 @@ header.il-header {
       li {
         line-height: $heigthNoMobileHeader;
         a.il-link {
-          border-bottom: 2px solid #b3a1cf;
           font-size: 0.85rem;
           @media screen and (min-width: 768px) {
-            font-size: 1rem;
+            font-size: 0.92rem;
             text-transform: uppercase;
           }
           &:hover {
             color: $lightColor;
             font-weight: 700;
+          }
+          svg {
+            margin-right: 0.2rem;
           }
         }
       }

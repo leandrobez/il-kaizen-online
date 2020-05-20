@@ -1,5 +1,6 @@
 import axios from 'axios';
-export const apiURL = 'kaizenonline/api/';
+const apiURL = 'kaizenonline/api/';
+
 const api = axios.create({
   baseURL: process.env.REACT_APP_URL_BASE + process.env.REACT_APP_HOST_PORT,
 });
@@ -7,32 +8,25 @@ const api = axios.create({
 api.interceptors.request.use(async (config) => {
   return config;
 });
-export const initCheckout = () => {
-  const apiURL = '/kaizenonline/api/';
 
+export const registerCustomer = async (data) => {
+  const endPointRegister = 'customer/register';
+  return await api.post(apiURL + endPointRegister, data);
+};
+
+export const createCheckout = () => {
   const createPlan = async (plan, repeats) => {
     const endPointPlan = 'gerencianet/plan',
       body = {
-        name: plan.name,
+        name: plan,
         repeats: repeats,
         interval: 1,
       };
 
-    return await axios.post(
-      process.env.REACT_APP_URL_BASE +
-        process.env.REACT_APP_HOST_PORT +
-        apiURL +
-        endPointPlan,
-      body
-    );
+    return await api.post(apiURL + endPointPlan, body);
   };
 
-  const createSubscription = async (
-    plan_name,
-    plan_id,
-    currentPlan,
-    customer
-  ) => {
+  const createSubscription = (plan_name, plan_id, currentPlan, customer) => {
     const endPointSub = 'gerencianet/plan/subscription',
       metadata = {
         custom_id: customer,
@@ -51,39 +45,23 @@ export const initCheckout = () => {
           value: currentPlan.price * 100,
         },
       ];
-    return axios.post(
-      process.env.REACT_APP_URL_BASE +
-        process.env.REACT_APP_HOST_PORT +
-        apiURL +
-        endPointSub,
-      {
-        metadata,
-        params,
-        items,
-      }
-    );
+    return api.post(apiURL + endPointSub, {
+      metadata,
+      params,
+      items,
+    });
   };
 
-  const createPay = async (payBody, subscription_id) => {
+  const createPay = (payBody, subscription_id) => {
     const endPointPay = 'gerencianet/plan/subscription/pay';
     const payParams = {
       id: subscription_id,
     };
 
-    return axios
-      .post(
-        process.env.REACT_APP_URL_BASE +
-          process.env.REACT_APP_HOST_PORT +
-          apiURL +
-          endPointPay,
-        {
-          payParams,
-          payBody,
-        }
-      )
-      .then((res) => {
-        return res;
-      });
+    return api.post(apiURL + endPointPay, {
+      payParams,
+      payBody,
+    });
   };
   return {
     createPlan,
@@ -91,5 +69,3 @@ export const initCheckout = () => {
     createPay,
   };
 };
-
-export default api;

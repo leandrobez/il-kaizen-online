@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+/* icons */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSign } from '@fortawesome/free-solid-svg-icons';
-import { faVideo } from '@fortawesome/free-solid-svg-icons';
+import { faSign, faVideo } from '@fortawesome/free-solid-svg-icons';
+
 class Home extends Component {
   render() {
     return (
       <div className="il-content">
         <div className="il-content--text">
           <h1 className="il-big--title">Pilates em casa</h1>
-          <h3 className="il-subtitle">
-            Aulas virtuais de pilates no confoto do lar
-          </h3>
+          <h3 className="il-subtitle">Aulas de pilates no confoto do lar</h3>
           <p className="il-description">
-            Você gostaria de praticar exercícios de pilates, mas a situação que
-            estamos passando diz que a melhor opção é ficar em casa.<br></br>
-            Então porquê não fazer no conforto do seu lar.<br></br>Escolha um
-            plano e garanta sua vaga.
+            Você gostaria de praticar o pilates, mas a situação que estamos
+            passando recomenda que você fique em casa.<br></br>
+            Então que tal ter a opção de fazer no conforto do seu lar.<br></br>
+            Nós podemos te dar ajudar.<br></br>Escolha um plano e garanta sua
+            vaga.
           </p>
           <div className="il-buttons">
             <Link to="/plans" className="il-btn il-btn--plan">
@@ -25,7 +26,7 @@ class Home extends Component {
             </Link>
             <Link to="/video" className="il-btn il-btn--video">
               <FontAwesomeIcon icon={faVideo} />
-              Veja um vídeo
+              Veja esse vídeo
             </Link>
           </div>
         </div>
