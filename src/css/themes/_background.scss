@@ -1,47 +1,26 @@
-.il-background {
-  width: 100%;
-  height: 100%;
-
-  @media screen and (min-width: 500px) {
-    max-width: 340px;
-  }
-  @media screen and (min-width: 768px) {
-    max-width: 400px;
-  }
-  @media screen and (min-width: 1024px) {
-    flex: 1;
-  }
-
-  margin: auto;
+&.il-default,
+&.il-about,
+&.il-plans,
+&.il-contact {
+  filter: grayscale(0.2);
   position: relative;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  &.il-default {
-    background-image: url(../assets/default.png);
-  }
-  &.il-about {
-    background-image: url(../assets/about.png);
-  }
-  &.il-plans {
-    background-image: url(../assets/plans.png);
-  }
-
-  &.il-contact {
-    height: 0;
-    @media screen and (min-width: 1024px) {
-      height: 100%;
-      background-image: url(../assets/contact.png);
-    }
-  }
   &:after {
     content: '';
     width: 100%;
     position: absolute;
     height: 100%;
-    background-image: url(../assets/leafes.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
   }
+}
+
+&.il-default {
+  background-image: url('../assets/default.png');
+}
+&.il-about {
+  background-image: url('../assets/about.png');
+}
+&.il-plans {
+  background-image: url('../assets/plans.png');
+}
+&.il-contact {
+  background-image: url('../assets/contact.png');
 }

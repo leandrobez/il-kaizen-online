@@ -4,7 +4,7 @@ class Error extends Component {
   render() {
     const currentStyle = { textAlign: 'center' };
     return (
-      <section className="il-section">
+      <section className="il-section il-section--error">
         <h2
           className="il-section--title il-text-color--medium-dark"
           style={currentStyle}

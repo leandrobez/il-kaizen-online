@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
+/* context */
 import { PageContext } from '../../context/PageContext';
+
 class Ilustration extends Component {
   static contextType = PageContext;
   getBackground = () => {

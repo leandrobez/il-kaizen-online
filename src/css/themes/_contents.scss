@@ -1,59 +1,23 @@
+/* contents */
 .il-content {
-  position: relative;
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  @media screen and (min-width: 1024px) {
-    flex: 2 1;
-  }
   .il-content--text {
-    padding: 0 10px;
-    width: 100%;
-    @media (min-width: 500px) {
-      padding: 0 20px;
-    }
-    @media (min-width: 768px) {
-      padding: 0 40px;
-    }
+    padding: 0.8rem;
   }
 
-  &.il-agreement .il-content--text,
-  &.il-video .il-content--text {
-    padding: 0 10px;
-    @media (min-width: 500px) {
-      padding: 15px 0;
-    }
-    @media (min-width: 768px) {
-      padding: 20px 0;
-    }
-  }
-  &.il-content--plans {
-    height: 100%;
-  }
-  &.il-agreement {
-    height: 100%;
-    h1 span {
-      text-transform: uppercase;
-    }
-  }
-  &.il-video {
-    top: 0;
+  .il-video--content {
     width: 100%;
-    .il-video--content {
-      width: 100%;
-      max-width: 700px;
-      margin: 0 auto;
-      border: 3px solid #454343;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 500px;
-    }
-    .il-buttons {
-      max-width: 500px;
-      margin: 15px auto;
-      padding: 10px 0;
-    }
+    max-width: 700px;
+    margin: 0 auto;
+    border: 3px solid #555252;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+  }
+  .il-buttons {
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 10px 0;
   }
 }

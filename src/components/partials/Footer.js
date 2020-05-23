@@ -1,10 +1,12 @@
 import React from 'react';
+
+/* images */
 import share from '../../assets/share.png';
 import instagram from '../../assets/instagram.png';
+
 export default function () {
   return (
-    <>
-      <footer className="il-footer">
+    <footer className="il-footer">
         <div className="il-footer--content">
           <div className="il-shares">
             <span>
@@ -36,6 +38,5 @@ export default function () {
           </div>
         </div>
       </footer>
-    </>
   );
 }

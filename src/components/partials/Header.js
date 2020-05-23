@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+/* images */
 import logo from '../../assets/logo.png';
 
 /* icons */
@@ -10,6 +12,7 @@ import {
   faBook,
   faBroadcastTower,
 } from '@fortawesome/free-solid-svg-icons';
+
 class Header extends Component {
   render() {
     return (

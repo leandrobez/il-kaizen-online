@@ -5,6 +5,7 @@
 /**links colors*/
 /**alerts */
 /**loading*/
+/* footer */
 @import url("https://fonts.googleapis.com/css?family=Abel|Rubik|Montserrat&display=swap");
 body {
   font-family: 'Montserrat', sans-serif;
@@ -182,8 +183,8 @@ a {
   background: #524e4e;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr 40px;
-      grid-template-rows: 1fr 40px;
+  -ms-grid-rows: 1fr 50px;
+      grid-template-rows: 1fr 50px;
   overflow: hidden;
 }
 
@@ -242,12 +243,19 @@ a {
   }
 }
 
-main {
-  height: 100%;
-  margin-bottom: 1.5rem;
+section.il-section {
+  padding: 1rem 0;
+  position: relative;
 }
 
-main .il-main {
+section.il-section.il-section--error {
+  position: absolute;
+  z-index: -1;
+}
+
+.il-main {
+  height: 100%;
+  padding: 1rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -258,12 +266,12 @@ main .il-main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  justify-items: center;
-  height: 100%;
+  -webkit-transition: all 450ms ease-in;
+  transition: all 450ms ease-in;
 }
 
 @media (min-width: 1024px) {
-  main .il-main {
+  .il-main {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
         -ms-flex-direction: row-reverse;
@@ -271,13 +279,110 @@ main .il-main {
   }
 }
 
-main .il-main .il-no-background {
+.il-main .il-background {
+  width: 100%;
+  height: 100%;
+  min-width: 400px;
+  min-height: 225px;
+  max-width: 480;
+  max-height: 270px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-transition: all 450ms ease-in;
+  transition: all 450ms ease-in;
+  margin: auto;
+}
+
+@media (min-width: 768px) {
+  .il-main .il-background {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .il-main .il-background {
+    -webkit-transition: all 450ms ease-in;
+    transition: all 450ms ease-in;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1;
+            flex: 1 1;
+    max-width: 480px;
+    background-size: cover;
+    position: relative;
+  }
+}
+
+@media (min-width: 1200px) {
+  .il-main .il-background {
+    -webkit-transition: all 450ms ease-in;
+    transition: all 450ms ease-in;
+    max-height: 400px;
+    background-size: cover;
+    position: relative;
+  }
+}
+
+.il-main .il-background.il-default, .il-main .il-background.il-about, .il-main .il-background.il-plans, .il-main .il-background.il-contact {
+  -webkit-filter: grayscale(0.2);
+          filter: grayscale(0.2);
+  position: relative;
+}
+
+.il-main .il-background.il-default:after, .il-main .il-background.il-about:after, .il-main .il-background.il-plans:after, .il-main .il-background.il-contact:after {
+  content: '';
+  width: 100%;
+  position: absolute;
+  height: 100%;
+}
+
+.il-main .il-background.il-default {
+  background-image: url("../assets/default.png");
+}
+
+.il-main .il-background.il-about {
+  background-image: url("../assets/about.png");
+}
+
+.il-main .il-background.il-plans {
+  background-image: url("../assets/plans.png");
+}
+
+.il-main .il-background.il-contact {
+  background-image: url("../assets/contact.png");
+}
+
+.il-main .il-no-background {
   visibility: hidden;
 }
 
-main .il-main section.il-section {
-  position: absolute;
-  visibility: hidden;
+.il-main .il-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .il-main .il-content {
+    -webkit-box-flex: 2;
+        -ms-flex: 2 1;
+            flex: 2 1;
+  }
+}
+
+@media (min-width: 1200px) {
+  .il-main .il-content {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1;
+            flex: 1 1;
+  }
 }
 
 .il-alert {
@@ -414,151 +519,39 @@ main .il-main section.il-section {
   color: #fefefe;
 }
 
-.il-background {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  position: relative;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+.il-app--gradient {
+  background-image: -webkit-gradient(linear, left top, right top, from(#a8caba), to(#5d4157));
+  background-image: linear-gradient(to right, #a8caba 0%, #5d4157 100%);
 }
 
-@media screen and (min-width: 500px) {
-  .il-background {
-    max-width: 340px;
-  }
+.il-app--gradient__metal {
+  background-image: -webkit-gradient(linear, left top, right top, from(#243949), to(#517fa4));
+  background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
 }
 
-@media screen and (min-width: 768px) {
-  .il-background {
-    max-width: 400px;
-  }
+.il-app--gradient__esmerald {
+  background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);
 }
 
-@media screen and (min-width: 1024px) {
-  .il-background {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-  }
+.il-app--gradient_wood {
+  background-image: -webkit-gradient(linear, left top, right top, from(#d7d2cc), to(#304352));
+  background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
 }
 
-.il-background.il-default {
-  background-image: url(../assets/default.png);
-}
-
-.il-background.il-about {
-  background-image: url(../assets/about.png);
-}
-
-.il-background.il-plans {
-  background-image: url(../assets/plans.png);
-}
-
-.il-background.il-contact {
-  height: 0;
-}
-
-@media screen and (min-width: 1024px) {
-  .il-background.il-contact {
-    height: 100%;
-    background-image: url(../assets/contact.png);
-  }
-}
-
-.il-background:after {
-  content: '';
-  width: 100%;
-  position: absolute;
-  height: 100%;
-  background-image: url(../assets/leafes.png);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
+/* contents */
 .il-content {
-  position: relative;
   color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-@media screen and (min-width: 1024px) {
-  .il-content {
-    -webkit-box-flex: 2;
-        -ms-flex: 2 1;
-            flex: 2 1;
-  }
 }
 
 .il-content .il-content--text {
-  padding: 0 10px;
-  width: 100%;
+  padding: 0.8rem;
 }
 
-@media (min-width: 500px) {
-  .il-content .il-content--text {
-    padding: 0 20px;
-  }
-}
-
-@media (min-width: 768px) {
-  .il-content .il-content--text {
-    padding: 0 40px;
-  }
-}
-
-.il-content.il-agreement .il-content--text,
-.il-content.il-video .il-content--text {
-  padding: 0 10px;
-}
-
-@media (min-width: 500px) {
-  .il-content.il-agreement .il-content--text,
-  .il-content.il-video .il-content--text {
-    padding: 15px 0;
-  }
-}
-
-@media (min-width: 768px) {
-  .il-content.il-agreement .il-content--text,
-  .il-content.il-video .il-content--text {
-    padding: 20px 0;
-  }
-}
-
-.il-content.il-content--plans {
-  height: 100%;
-}
-
-.il-content.il-agreement {
-  height: 100%;
-}
-
-.il-content.il-agreement h1 span {
-  text-transform: uppercase;
-}
-
-.il-content.il-video {
-  top: 0;
-  width: 100%;
-}
-
-.il-content.il-video .il-video--content {
+.il-content .il-video--content {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
-  border: 3px solid #454343;
+  border: 3px solid #555252;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -571,7 +564,7 @@ main .il-main section.il-section {
   height: 500px;
 }
 
-.il-content.il-video .il-buttons {
+.il-content .il-buttons {
   max-width: 500px;
   margin: 15px auto;
   padding: 10px 0;
@@ -799,7 +792,6 @@ button.il-btn.il-btn--card svg {
 }
 
 .il-card--plans {
-  margin-top: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -850,7 +842,7 @@ button.il-btn.il-btn--card svg {
   border-radius: 10px;
   background: #342458;
   position: relative;
-  height: 210px;
+  height: 180px;
   padding: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -867,7 +859,7 @@ button.il-btn.il-btn--card svg {
 
 @media (min-width: 600px) {
   .il-card--plans .il-card--item {
-    height: 220px;
+    margin: 0;
     padding: 10px;
     max-width: 170px;
   }

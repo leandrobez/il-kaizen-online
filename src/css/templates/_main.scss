@@ -1,21 +1,63 @@
-main {
+section.il-section {
+  padding: 1rem 0;
+  position: relative;
+  &.il-section--error {
+    position: absolute;
+    z-index: -1;
+  }
+}
+.il-main {
   height: 100%;
-  margin-bottom: 1.5rem;
-  .il-main {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 450ms ease-in;
+  @media (min-width: 1024px) {
+    flex-direction: row-reverse;
+  }
+  .il-background {
+    width: 100%;
+    height: 100%;
+    min-width: 400px;
+    min-height: 225px;
+    max-width: 480;
+    max-height: 270px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 450ms ease-in;
+    margin: auto;
+    @media (min-width: 768px) {
+      max-width: 500px;
+    }
+    @media (min-width: 1024px) {
+      transition: all 450ms ease-in;
+      flex: 1 1;
+      max-width: 480px;
+      background-size: cover;
+      position: relative;
+    }
+    @media (min-width: 1200px) {
+      transition: all 450ms ease-in;
+      max-height: 400px;
+      background-size: cover;
+      position: relative;
+    }
+    @import '../themes/background';
+  }
+  .il-no-background {
+    visibility: hidden;
+  }
+  .il-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    justify-items: center;
-    height: 100%;
     @media (min-width: 1024px) {
-      flex-direction: row-reverse;
+      flex: 2 1;
     }
-    .il-no-background {
-      visibility: hidden;
-    }
-    section.il-section {
-      position: absolute;
-      visibility: hidden;
+    @media (min-width: 1200px) {
+      flex: 1 1;
     }
   }
 }
