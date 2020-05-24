@@ -22,9 +22,9 @@ class Agreement extends Component {
           <h3 className="il-subtitle">Preencha o formulário para continuar</h3>
           <p className="il-description">
             Os dados coletados não serão divulgados. Usamos apenas para o
-            controle eficiente dos pagamentos.<br></br>Abaixo escolha como
-            deseja fazer o pagamento, logo após preencha o formulário que será
-            mostrado.
+            controle eficiente das inscrições.<br></br>Abaixo escolha como
+            deseja fazer o pagamento e preencha o formulário que será mostrado
+            logo em seguida.
           </p>
         </div>
         <GerencianetContextProvider>

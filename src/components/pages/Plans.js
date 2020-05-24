@@ -9,9 +9,9 @@ import { faHandsHelping } from '@fortawesome/free-solid-svg-icons';
 class Plans extends Component {
   render() {
     const planList = [
-      { id: 1, title: '1 x semana', price: '120', path: '/basic' },
-      { id: 2, title: '2 x semana', price: '210', path: '/vip' },
-      { id: 3, title: '3 x semana', price: '300', path: '/premium' },
+      { id: 1, title: '1 x semana', price: '98', path: '/basic' },
+      { id: 2, title: '2 x semana', price: '198', path: '/vip' },
+      { id: 3, title: '3 x semana', price: '248', path: '/premium' },
     ];
 
     return (
