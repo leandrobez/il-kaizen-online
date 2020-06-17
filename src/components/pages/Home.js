@@ -13,9 +13,9 @@ class Home extends Component {
           <h1 className="il-big--title">Pilates em casa</h1>
           <h3 className="il-subtitle">Aulas de pilates no confoto do lar</h3>
           <p className="il-description">
-            Você gostaria de praticar o pilates, mas a situação que estamos
+            Você gostaria de fazer aulas de pilates mas a situação que estamos
             passando recomenda que você fique em casa.<br></br>
-            Então que tal ter a opção de fazer no conforto do seu lar.<br></br>
+            Então que tal fazer no conforto do seu lar.<br></br>
             Nós podemos te dar ajudar.<br></br>Escolha um plano e garanta sua
             vaga.
           </p>

@@ -149,7 +149,7 @@ class Contact extends Component {
 
   render() {
     return (
-      <div className="il-content">
+      <div className="il-content il-content--contact">
         <Loanding flag={this.state.showLoad} title="enviando" />
         <Alert message={this.state.message} show={this.handledAlert()} />
         <div className="il-content--text">

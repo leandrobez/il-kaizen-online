@@ -2,7 +2,6 @@
 &.il-about,
 &.il-plans,
 &.il-contact {
-  filter: grayscale(0.2);
   position: relative;
   &:after {
     content: '';
@@ -23,4 +22,6 @@
 }
 &.il-contact {
   background-image: url('../assets/contact.png');
+  max-width: 100%;
+  //background-size: contain;
 }

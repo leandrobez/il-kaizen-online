@@ -12,6 +12,7 @@ section.il-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-content: space-between;
   transition: all 450ms ease-in;
   @media (min-width: 1024px) {
     flex-direction: row-reverse;
@@ -53,8 +54,12 @@ section.il-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     @media (min-width: 1024px) {
       flex: 2 1;
+      &.il-content--contact {
+        flex: 1 1;
+      }
     }
     @media (min-width: 1200px) {
       flex: 1 1;

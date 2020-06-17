@@ -5,6 +5,7 @@ import {
   registerCustomer,
   createCheckout,
 } from '../services/GerencianetService';
+
 import PayTokenGN from '../services/PayTokenGN';
 
 const formatData = require('moment');

@@ -4,14 +4,30 @@
   .il-register--contents {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    padding-bottom: 1rem;
+    min-height: 600px;
+    //height: 100%;
     @media (min-width: 768px) {
       flex-direction: row;
     }
-    .il-contents--plan__description {
-      background: white;
+    .il-plan--description {
+      background: rgb(151, 128, 128);
       color: $primaryColor;
       padding: 0 8px;
+      .il-plan--header {
+        padding: 0.4rem;
+
+        h4 {
+          color: rgb(27, 17, 17);
+          text-align: center;
+        }
+      }
+      h3 {
+        text-align: center;
+        margin: 0.45rem 0;
+        text-transform: uppercase;
+        color: green;
+      }
       @media (min-width: 768px) {
         flex: 1 1;
         background: rgb(235, 231, 231);
@@ -22,26 +38,7 @@
         box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
         flex: 1;
       }
-      h4 {
-        text-align: center;
-        font-size: 0.86rem;
-        margin: 0.45rem 0;
-        @media (min-width: 768px) {
-          width: inherit;
-        }
-      }
-      ul {
-        display: flex;
-        align-items: center;
-        @media (min-width: 1024px) {
-          height: 2rem;
-        }
-        li {
-          display: block;
-          width: 100%;
-          text-align: center;
-        }
-      }
+
       span.il-description--price {
         margin-top: 1rem;
         font-size: 1.4rem;
@@ -57,7 +54,7 @@
         padding: 0 0.35rem;
       }
     }
-    .il-contents--pay {
+    .il-plan--pay {
       background: white;
       color: $primaryColor;
       display: flex;
@@ -69,9 +66,9 @@
       .il-pay--register {
         //margin-top: 2rem;
         padding: 0.4rem;
-        background: #617886;
+        background: #89a0af;
         h4 {
-          color: white;
+          color: rgb(33, 34, 48);
           text-align: center;
         }
         @media (min-width: 768px) {
@@ -85,7 +82,7 @@
             text-align: center;
             label {
               margin-right: 0.5rem;
-              color: white;
+              color: rgb(44, 28, 28);
               svg {
                 margin-right: 0.3rem;
               }

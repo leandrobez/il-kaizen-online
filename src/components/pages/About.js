@@ -11,7 +11,9 @@ class About extends Component {
     return (
       <div className="il-content">
         <div className="il-content--text">
-          <h1 className="il-big--title">O quê você recebe?</h1>
+          <h1 className="il-big--title">
+            O quê você tem de benefício com nossas aulas?
+          </h1>
           <h3 className="il-subtitle">
             Aulas online conduzidas por uma instrutora especializada.
           </h3>
@@ -27,7 +29,7 @@ class About extends Component {
               Physio Pilates
             </a>
             , pioneira na utilização do método Pilates no Brasil e licenciada
-            pela Balanced Body.
+            pela <b>Balanced Body</b>.
           </p>
           <div className="il-buttons">
             <Link to="/plans" className="il-btn il-btn--plan">

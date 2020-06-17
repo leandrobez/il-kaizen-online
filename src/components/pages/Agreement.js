@@ -16,15 +16,20 @@ class Agreement extends Component {
     return (
       <div className="il-content il-agreement">
         <div className="il-content--text">
-          <h1 className="il-big--title">
-            Contratar o plano <span>{this.props.match.params.plan}</span>
-          </h1>
-          <h3 className="il-subtitle">Preencha o formulário para continuar</h3>
+          {/* <h1 className="il-big--title">
+            
+          </h1> */}
+          <h3 className="il-subtitle">
+            Preencha o formulário para contratar o plano{' '}
+            <span>{this.props.match.params.plan}</span>
+          </h3>
           <p className="il-description">
-            Os dados coletados não serão divulgados. Usamos apenas para o
-            controle eficiente das inscrições.<br></br>Abaixo escolha como
-            deseja fazer o pagamento e preencha o formulário que será mostrado
-            logo em seguida.
+            <e>
+              Os dados coletados não serão divulgados. Usamos apenas para o
+              controle eficiente das inscrições.<br></br>Abaixo escolha como
+              deseja fazer o pagamento e preencha o formulário que será mostrado
+              logo em seguida.
+            </e>
           </p>
         </div>
         <GerencianetContextProvider>

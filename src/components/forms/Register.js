@@ -197,8 +197,6 @@ class Register extends Component {
 
   initCheckout = async (type) => {
     const checkout = await this.context.createCheckout(this.props.plan, type);
-    console.log(checkout);
-    //checkout.then((res) => {
     let path = '';
     if (!checkout.error) {
       path = '/checkout/success';
@@ -212,7 +210,6 @@ class Register extends Component {
       });
       window.location = path;
     }, 2000);
-    //});
   };
 
   render() {
@@ -221,16 +218,12 @@ class Register extends Component {
         <Loading flag={this.state.showLoad} title="processando" />
         <Alert message={this.state.message} show={this.handledAlert()} />
         <div className="il-register--contents">
-          <div className="il-contents--plan__description">
-            <h4>O que você está contratando</h4>
-            <ul>
-              <li>
+          <div className="il-plan--description">
+            <div className="il-plan--header">
+              <h3>
                 Plano: <strong>{this.props.plan}</strong>
-              </li>
-              <li>
-                Validade: <strong>{this.state.repeats}</strong> meses
-              </li>
-            </ul>
+              </h3>
+            </div>
             <span className="il-description--price">
               R$ {this.state.plan.price + ',00'}
             </span>
@@ -238,7 +231,7 @@ class Register extends Component {
               {this.state.plan.description}
             </p>
           </div>
-          <div className="il-contents--pay">
+          <div className="il-plan--pay">
             <div className="il-pay--register">
               <h4>Como gostaria de Pagar?</h4>
               <div className="il-choice">

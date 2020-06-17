@@ -16,8 +16,8 @@ function App() {
       <div className="il-container">
         <Router>
           <Header />
-          <main>
-            <div className="il-main il-container--wrapper">
+          <main className="il-container--wrapper">
+            <div className="il-main">
               <PageContextProvider>
                 <Switch>
                   <Ilustration />

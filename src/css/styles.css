@@ -177,6 +177,11 @@ a {
   text-decoration: none;
 }
 
+main {
+  height: 100%;
+  margin: auto;
+}
+
 .il-app {
   width: 100%;
   min-height: 100vh;
@@ -185,21 +190,13 @@ a {
   display: grid;
   -ms-grid-rows: 1fr 50px;
       grid-template-rows: 1fr 50px;
-  overflow: hidden;
 }
 
 .il-app .il-container {
-  width: 100%;
-  max-width: 1360px;
-  height: 100%;
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto 1fr;
+      grid-template-rows: auto 1fr;
 }
 
 .il-app .il-container .il-container--wrapper {
@@ -266,6 +263,8 @@ section.il-section.il-section--error {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
   -webkit-transition: all 450ms ease-in;
   transition: all 450ms ease-in;
 }
@@ -324,8 +323,6 @@ section.il-section.il-section--error {
 }
 
 .il-main .il-background.il-default, .il-main .il-background.il-about, .il-main .il-background.il-plans, .il-main .il-background.il-contact {
-  -webkit-filter: grayscale(0.2);
-          filter: grayscale(0.2);
   position: relative;
 }
 
@@ -350,6 +347,7 @@ section.il-section.il-section--error {
 
 .il-main .il-background.il-contact {
   background-image: url("../assets/contact.png");
+  max-width: 100%;
 }
 
 .il-main .il-no-background {
@@ -374,6 +372,11 @@ section.il-section.il-section--error {
     -webkit-box-flex: 2;
         -ms-flex: 2 1;
             flex: 2 1;
+  }
+  .il-main .il-content.il-content--contact {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1;
+            flex: 1 1;
   }
 }
 
@@ -451,11 +454,11 @@ section.il-section.il-section--error {
 }
 
 .il-alert--warning {
-  background: #e66a17;
+  background: #d1530a;
 }
 
 .il-alert--warning p {
-  color: #ebece7;
+  color: #e5f1b3;
 }
 
 .il-alert--danger {
@@ -1173,7 +1176,7 @@ header.il-header {
 
 @media screen and (min-width: 680px) {
   header.il-header {
-    height: 70px;
+    height: 100%;
   }
 }
 
@@ -1217,6 +1220,7 @@ header.il-header nav .il-brand {
 header.il-header nav .il-brand img {
   width: 100%;
   max-width: 38px;
+  max-height: 61px;
 }
 
 header.il-header nav .il-brand h1.il-brand--title {
@@ -1292,7 +1296,8 @@ header.il-header nav .il-menu li a.il-link svg {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
+  padding-bottom: 1rem;
+  min-height: 600px;
 }
 
 @media (min-width: 768px) {
@@ -1304,14 +1309,30 @@ header.il-header nav .il-menu li a.il-link svg {
   }
 }
 
-.il-register .il-register--contents .il-contents--plan__description {
-  background: white;
+.il-register .il-register--contents .il-plan--description {
+  background: #978080;
   color: #524e4e;
   padding: 0 8px;
 }
 
+.il-register .il-register--contents .il-plan--description .il-plan--header {
+  padding: 0.4rem;
+}
+
+.il-register .il-register--contents .il-plan--description .il-plan--header h4 {
+  color: #1b1111;
+  text-align: center;
+}
+
+.il-register .il-register--contents .il-plan--description h3 {
+  text-align: center;
+  margin: 0.45rem 0;
+  text-transform: uppercase;
+  color: green;
+}
+
 @media (min-width: 768px) {
-  .il-register .il-register--contents .il-contents--plan__description {
+  .il-register .il-register--contents .il-plan--description {
     -webkit-box-flex: 1;
         -ms-flex: 1 1;
             flex: 1 1;
@@ -1320,7 +1341,7 @@ header.il-header nav .il-menu li a.il-link svg {
 }
 
 @media (min-width: 1024px) {
-  .il-register .il-register--contents .il-contents--plan__description {
+  .il-register .il-register--contents .il-plan--description {
     padding: 0 12px;
     margin: 0 0.3rem;
     -webkit-box-shadow: 2px 3px 10px rgba(180, 180, 180, 0.6);
@@ -1331,40 +1352,7 @@ header.il-header nav .il-menu li a.il-link svg {
   }
 }
 
-.il-register .il-register--contents .il-contents--plan__description h4 {
-  text-align: center;
-  font-size: 0.86rem;
-  margin: 0.45rem 0;
-}
-
-@media (min-width: 768px) {
-  .il-register .il-register--contents .il-contents--plan__description h4 {
-    width: inherit;
-  }
-}
-
-.il-register .il-register--contents .il-contents--plan__description ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-@media (min-width: 1024px) {
-  .il-register .il-register--contents .il-contents--plan__description ul {
-    height: 2rem;
-  }
-}
-
-.il-register .il-register--contents .il-contents--plan__description ul li {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
-.il-register .il-register--contents .il-contents--plan__description span.il-description--price {
+.il-register .il-register--contents .il-plan--description span.il-description--price {
   margin-top: 1rem;
   font-size: 1.4rem;
   text-align: center;
@@ -1375,12 +1363,12 @@ header.il-header nav .il-menu li a.il-link svg {
   margin-bottom: 1rem;
 }
 
-.il-register .il-register--contents .il-contents--plan__description p.il-description--text {
+.il-register .il-register--contents .il-plan--description p.il-description--text {
   font-size: 0.8rem;
   padding: 0 0.35rem;
 }
 
-.il-register .il-register--contents .il-contents--pay {
+.il-register .il-register--contents .il-plan--pay {
   background: white;
   color: #524e4e;
   display: -webkit-box;
@@ -1394,36 +1382,36 @@ header.il-header nav .il-menu li a.il-link svg {
 }
 
 @media (min-width: 768px) {
-  .il-register .il-register--contents .il-contents--pay {
+  .il-register .il-register--contents .il-plan--pay {
     -webkit-box-flex: 2;
         -ms-flex: 2 1;
             flex: 2 1;
   }
 }
 
-.il-register .il-register--contents .il-contents--pay .il-pay--register {
+.il-register .il-register--contents .il-plan--pay .il-pay--register {
   padding: 0.4rem;
-  background: #617886;
+  background: #89a0af;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-pay--register h4 {
-  color: white;
+.il-register .il-register--contents .il-plan--pay .il-pay--register h4 {
+  color: #212230;
   text-align: center;
 }
 
 @media (min-width: 768px) {
-  .il-register .il-register--contents .il-contents--pay .il-pay--register {
+  .il-register .il-register--contents .il-plan--pay .il-pay--register {
     margin-top: 0;
   }
 }
 
-.il-register .il-register--contents .il-contents--pay .il-pay--register .il-choice {
+.il-register .il-register--contents .il-plan--pay .il-pay--register .il-choice {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-pay--register .il-choice > div {
+.il-register .il-register--contents .il-plan--pay .il-pay--register .il-choice > div {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -1431,40 +1419,40 @@ header.il-header nav .il-menu li a.il-link svg {
   text-align: center;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-pay--register .il-choice > div label {
+.il-register .il-register--contents .il-plan--pay .il-pay--register .il-choice > div label {
   margin-right: 0.5rem;
-  color: white;
+  color: #2c1c1c;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-pay--register .il-choice > div label svg {
+.il-register .il-register--contents .il-plan--pay .il-pay--register .il-choice > div label svg {
   margin-right: 0.3rem;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-pay--register .il-choice > div input[type='radio'] {
+.il-register .il-register--contents .il-plan--pay .il-pay--register .il-choice > div input[type='radio'] {
   height: 16px;
   width: 16px;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-customer {
+.il-register .il-register--contents .il-plan--pay .il-customer {
   display: none;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-customer.il-show {
+.il-register .il-register--contents .il-plan--pay .il-customer.il-show {
   display: block;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-customer .il-customer--register {
+.il-register .il-register--contents .il-plan--pay .il-customer .il-customer--register {
   background: white;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-customer .il-customer--register .il-customer--register__name {
+.il-register .il-register--contents .il-plan--pay .il-customer .il-customer--register .il-customer--register__name {
   -webkit-box-flex: 1;
       -ms-flex: 1 1;
           flex: 1 1;
 }
 
 @media (min-width: 540px) {
-  .il-register .il-register--contents .il-contents--pay .il-customer .il-customer--register .il-customer--register__name {
+  .il-register .il-register--contents .il-plan--pay .il-customer .il-customer--register .il-customer--register__name {
     -webkit-box-flex: 2;
         -ms-flex: 2 1;
             flex: 2 1;
@@ -1472,24 +1460,24 @@ header.il-header nav .il-menu li a.il-link svg {
 }
 
 @media (min-width: 800px) {
-  .il-register .il-register--contents .il-contents--pay .il-customer .il-customer--register .il-customer--register__name {
+  .il-register .il-register--contents .il-plan--pay .il-customer .il-customer--register .il-customer--register__name {
     -webkit-box-flex: 3;
         -ms-flex: 3 1;
             flex: 3 1;
   }
 }
 
-.il-register .il-register--contents .il-contents--pay .il-customer .il-customer--register .il-customer--register__repeats {
+.il-register .il-register--contents .il-plan--pay .il-customer .il-customer--register .il-customer--register__repeats {
   -webkit-box-flex: 1;
       -ms-flex: 1 1;
           flex: 1 1;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card {
+.il-register .il-register--contents .il-plan--pay .il-credit-card {
   display: none;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card.il-show {
+.il-register .il-register--contents .il-plan--pay .il-credit-card.il-show {
   position: absolute;
   top: -20vh;
   left: 0;
@@ -1502,13 +1490,13 @@ header.il-header nav .il-menu li a.il-link svg {
   transition: all 450ms ease-in;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container {
+.il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container {
   position: relative;
   width: 100%;
   left: 0;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-close--modal {
+.il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-close--modal {
   position: relative;
   top: 26%;
   left: 50%;
@@ -1525,21 +1513,21 @@ header.il-header nav .il-menu li a.il-link svg {
   border-radius: 50%;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-close--modal svg {
+.il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-close--modal svg {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-close--modal:hover {
+.il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-close--modal:hover {
   font-size: 1.8rem;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-close--modal:hover svg {
+.il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-close--modal:hover svg {
   width: 1.8rem;
   height: 1.8rem;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-credit-card--body {
+.il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-credit-card--body {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1557,7 +1545,7 @@ header.il-header nav .il-menu li a.il-link svg {
 }
 
 @media (min-width: 600px) {
-  .il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-credit-card--body {
+  .il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-credit-card--body {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -1565,7 +1553,7 @@ header.il-header nav .il-menu li a.il-link svg {
   }
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-credit-card--body .il-card--simulation {
+.il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-credit-card--body .il-card--simulation {
   padding: 0.4rem;
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -1586,7 +1574,7 @@ header.il-header nav .il-menu li a.il-link svg {
   background: white;
 }
 
-.il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-credit-card--body .il-card--form {
+.il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-credit-card--body .il-card--form {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -1594,7 +1582,7 @@ header.il-header nav .il-menu li a.il-link svg {
 }
 
 @media (min-width: 800px) {
-  .il-register .il-register--contents .il-contents--pay .il-credit-card .il-credit-card--container .il-credit-card--body .il-card--form {
+  .il-register .il-register--contents .il-plan--pay .il-credit-card .il-credit-card--container .il-credit-card--body .il-card--form {
     -webkit-box-flex: 2;
         -ms-flex: 2 1;
             flex: 2 1;

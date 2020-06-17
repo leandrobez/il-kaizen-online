@@ -5,13 +5,13 @@ import { PageContext } from '../../context/PageContext';
 
 class Ilustration extends Component {
   static contextType = PageContext;
-  getBackground = () => {
-    const page = this.props.location.pathname;
-    return this.context.getClass(page);
-  };
 
   render() {
-    return <div className={this.getBackground()}></div>;
+    return (
+      <div
+        className={this.context.getClass(this.props.location.pathname)}
+      ></div>
+    );
   }
 }
 

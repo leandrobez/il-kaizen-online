@@ -4,14 +4,10 @@
   background: $primaryColor;
   display: grid;
   grid-template-rows: 1fr $heigth-footer;
-  overflow: hidden;
+
   .il-container {
-    width: 100%;
-    max-width: $maxWidth;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 1fr;
     .il-container--wrapper {
       width: 100%;
       margin: 0 auto;
