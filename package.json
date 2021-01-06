@@ -37,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "gn-api-sdk-node": "^1.0.0",
     "moment": "^2.24.0"
   }
